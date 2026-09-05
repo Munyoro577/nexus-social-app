@@ -5,6 +5,10 @@ import { useParams, useRouter } from 'next/navigation';
 import { useStore } from '@/store/useStore';
 import { timeAgo } from '@/lib/utils';
 
+export function generateStaticParams() {
+  return [{ chatId: 'chat1' }, { chatId: 'chat2' }, { chatId: 'chat3' }, { chatId: 'chat4' }];
+}
+
 export default function ChatConversationPage() {
   const params = useParams();
   const router = useRouter();
