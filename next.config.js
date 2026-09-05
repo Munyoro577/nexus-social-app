@@ -5,6 +5,9 @@ const nextConfig = {
   images: { unoptimized: true },
   trailingSlash: true,
   basePath: '/nexus-social-app',
+  assetPrefix: '/nexus-social-app/',
+  eslint: { ignoreDuringBuilds: true },
+  typescript: { ignoreBuildErrors: false },
 };
 
 module.exports = nextConfig;
