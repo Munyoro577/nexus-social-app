@@ -4,6 +4,7 @@ const nextConfig = {
   output: 'export',
   images: { unoptimized: true },
   trailingSlash: true,
+  basePath: '/nexus-social-app',
 };
 
 module.exports = nextConfig;
