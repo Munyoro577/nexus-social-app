@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: 22
       - run: npm install
-      - run: npx next build || (echo 'Build failed, trying with --no-lint...' && npx next lint --fix || true && npx next build)
+      - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
           path: out
