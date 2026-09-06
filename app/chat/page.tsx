@@ -1,58 +1,47 @@
 'use client';
 
 import { useStore } from '@/store/useStore';
-import { useRouter } from 'next/navigation';
-import { timeAgo } from '@/lib/utils';
+import Link from 'next/link';
+import { haptic } from '@/lib/haptics';
+import { formatTimestamp } from '@/lib/utils';
 
 export default function ChatListPage() {
-  const { chats, openChat } = useStore();
-  const router = useRouter();
-
-  const handleOpen = (chatId: string) => {
-    openChat(chatId);
-    router.push(`/chat/${chatId}`);
-  };
+  const chats = useStore((s) => s.chats);
+  const e2eEnabled = useStore((s) => s.e2eEncryption);
 
   return (
-    <div className="animate-fade-in">
-      <div className="px-4 py-3">
-        <div className="glass rounded-xl px-4 py-2.5 flex items-center gap-2">
-          <svg className="w-4 h-4 text-nexus-muted" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-          <input placeholder="Search chats..." className="flex-1 bg-transparent text-sm placeholder:text-nexus-muted" />
+    <div className="min-h-screen pb-20" style={{ background: 'var(--bg)' }}>
+      <div className="glass sticky top-0 z-30 border-b" style={{ borderColor: 'var(--border)' }}>
+        <div className="max-w-lg mx-auto px-4 py-3">
+          <h1 className="text-xl font-bold gradient-text">Chats</h1>
         </div>
       </div>
-      <div className="px-4 pb-2">
-        <div className="flex gap-3 overflow-x-auto no-scrollbar">
-          {chats.filter((c) => c.online).map((chat) => (
-            <button key={`online-${chat.id}`} onClick={() => handleOpen(chat.id)} className="flex-shrink-0 flex flex-col items-center gap-1">
-              <div className="relative">
-                <div className="w-14 h-14 rounded-full bg-nexus-card flex items-center justify-center text-2xl">{chat.contactAvatar}</div>
-                <div className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-nexus-bg" />
-              </div>
-              <span className="text-xs text-nexus-muted truncate max-w-[60px]">{chat.contactName.split(' ')[0]}</span>
-            </button>
-          ))}
-        </div>
-      </div>
-      <div className="h-px bg-nexus-border mx-4 my-2" />
-      <div>
-        {chats.map((chat) => (
-          <button key={chat.id} onClick={() => handleOpen(chat.id)} className="w-full px-4 py-3 flex items-center gap-3 hover:bg-nexus-card/30 transition-all">
-            <div className="relative flex-shrink-0">
-              <div className="w-12 h-12 rounded-full bg-nexus-card flex items-center justify-center text-2xl">{chat.contactAvatar}</div>
-              {chat.online && <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-nexus-bg" />}
+      <div className="max-w-lg mx-auto px-4 py-4 space-y-2">
+        {chats.map((c) => (
+          <Link
+            key={c.id}
+            href={`/chat/${c.id}`}
+            onClick={() => haptic('light')}
+            className="flex items-center gap-3 p-3 rounded-xl transition-all hover:opacity-80"
+            style={{ background: 'var(--card)', border: '1px solid var(--border)' }}
+          >
+            <div className="relative">
+              <span className="text-2xl">{c.contactAvatar}</span>
+              {c.online && <div className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-green-500 border-2" style={{ borderColor: 'var(--card)' }} />}
             </div>
-            <div className="flex-1 min-w-0 text-left">
-              <div className="flex items-center justify-between">
-                <span className="font-medium text-sm truncate">{chat.contactName}</span>
-                <span className="text-xs text-nexus-muted flex-shrink-0 ml-2">{timeAgo(chat.lastMessageTime)}</span>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-1">
+                <span className="text-sm font-medium truncate">{c.contactName}</span>
+                {e2eEnabled && <span className="text-[10px]" style={{ color: 'var(--accent)' }}>\ud83d\udd12</span>}
               </div>
-              <div className="flex items-center justify-between mt-0.5">
-                <span className={`text-xs truncate ${chat.unread > 0 ? 'text-nexus-text font-medium' : 'text-nexus-muted'}`}>{chat.lastMessage}</span>
-                {chat.unread > 0 && <span className="ml-2 flex-shrink-0 min-w-[18px] h-[18px] px-1 gradient-bg rounded-full text-[10px] font-bold text-white flex items-center justify-center">{chat.unread}</span>}
-              </div>
+              <div className="text-xs truncate" style={{ color: 'var(--muted)' }}>{c.lastMessage} \u00b7 {formatTimestamp(c.lastMessageTime)}</div>
             </div>
-          </button>
+            {c.unread > 0 && (
+              <div className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-white" style={{ background: 'var(--accent)' }}>
+                {c.unread}
+              </div>
+            )}
+          </Link>
         ))}
       </div>
     </div>
