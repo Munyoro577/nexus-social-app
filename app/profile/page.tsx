@@ -2,53 +2,76 @@
 
 import { useState } from 'react';
 import { useStore } from '@/store/useStore';
+import { haptic } from '@/lib/haptics';
+import Link from 'next/link';
 
 export default function ProfilePage() {
-  const { user, posts, updateProfile } = useStore();
+  const user = useStore((s) => s.user);
+  const authUser = useStore((s) => s.authUser);
+  const updateProfile = useStore((s) => s.updateProfile);
+  const posts = useStore((s) => s.posts);
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState(user.name);
   const [bio, setBio] = useState(user.bio);
-  const [username, setUsername] = useState(user.username);
+  const myPosts = posts.filter((p) => p.userId === 'me');
 
-  const handleSave = () => { updateProfile({ name, bio, username }); setEditing(false); };
+  const handleSave = () => {
+    haptic('success');
+    updateProfile({ name, bio });
+    setEditing(false);
+  };
 
   return (
-    <div className="animate-fade-in pb-20">
-      <div className="px-4 py-6 text-center">
-        <div className="w-24 h-24 mx-auto rounded-full bg-nexus-card flex items-center justify-center text-5xl mb-3 border-4 border-nexus-border">{user.avatar}</div>
-        <h1 className="text-xl font-bold">{user.name}</h1>
-        <p className="text-nexus-muted text-sm">{user.username}</p>
-        <p className="text-sm mt-2 max-w-xs mx-auto">{user.bio}</p>
-        <div className="flex justify-center gap-8 mt-5">
-          <div><div className="text-lg font-bold">{user.posts}</div><div className="text-xs text-nexus-muted">Posts</div></div>
-          <div><div className="text-lg font-bold">{user.followers.toLocaleString()}</div><div className="text-xs text-nexus-muted">Followers</div></div>
-          <div><div className="text-lg font-bold">{user.following}</div><div className="text-xs text-nexus-muted">Following</div></div>
+    <div className="min-h-screen pb-20" style={{ background: 'var(--bg)' }}>
+      <div className="glass sticky top-0 z-30 border-b" style={{ borderColor: 'var(--border)' }}>
+        <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between">
+          <h1 className="text-xl font-bold gradient-text">Profile</h1>
+          <Link href="/settings" onClick={() => haptic('light')} className="text-sm" style={{ color: 'var(--accent)' }}>Settings</Link>
         </div>
-        <button onClick={() => setEditing(!editing)} className="mt-5 px-6 py-2 rounded-full glass border border-nexus-border text-sm font-medium hover:bg-nexus-card">
-          {editing ? 'Cancel' : 'Edit Profile'}
-        </button>
       </div>
-      {editing && (
-        <div className="px-4 py-3 animate-slide-up">
-          <div className="glass rounded-2xl p-4 space-y-3">
-            <div><label className="text-xs text-nexus-muted">Name</label><input value={name} onChange={(e) => setName(e.target.value)} className="w-full bg-nexus-card rounded-lg px-3 py-2 mt-1 text-sm" /></div>
-            <div><label className="text-xs text-nexus-muted">Username</label><input value={username} onChange={(e) => setUsername(e.target.value)} className="w-full bg-nexus-card rounded-lg px-3 py-2 mt-1 text-sm" /></div>
-            <div><label className="text-xs text-nexus-muted">Bio</label><textarea value={bio} onChange={(e) => setBio(e.target.value)} rows={2} className="w-full bg-nexus-card rounded-lg px-3 py-2 mt-1 text-sm resize-none" /></div>
-            <button onClick={handleSave} className="w-full py-2.5 rounded-xl gradient-bg text-white font-medium text-sm">Save Changes</button>
+      <div className="max-w-lg mx-auto px-4 py-6">
+        <div className="text-center mb-6">
+          <div className="text-6xl mb-3">{user.avatar}</div>
+          {editing ? (
+            <div className="space-y-2">
+              <input value={name} onChange={(e) => setName(e.target.value)} className="w-full text-center px-4 py-2 rounded-xl" style={{ background: 'var(--card)', color: 'var(--text)' }} />
+              <textarea value={bio} onChange={(e) => setBio(e.target.value)} rows={2} className="w-full text-center px-4 py-2 rounded-xl resize-none" style={{ background: 'var(--card)', color: 'var(--text)' }} />
+              <button onClick={handleSave} className="px-6 py-2 rounded-xl text-sm font-medium" style={{ background: 'var(--gradient)', color: '#fff' }}>Save</button>
+            </div>
+          ) : (
+            <>
+              <h2 className="text-xl font-bold">{user.name}</h2>
+              <p className="text-sm" style={{ color: 'var(--muted)' }}>{user.bio}</p>
+              {authUser && <p className="text-xs mt-1" style={{ color: 'var(--accent)' }}>{authUser.email}</p>}
+              <button onClick={() => { haptic('light'); setEditing(true); }} className="mt-2 text-xs px-4 py-1.5 rounded-full" style={{ background: 'var(--card)', border: '1px solid var(--border)', color: 'var(--text)' }}>Edit Profile</button>
+            </>
+          )}
+        </div>
+        <div className="grid grid-cols-3 gap-3 mb-6">
+          <div className="text-center p-3 rounded-xl" style={{ background: 'var(--card)', border: '1px solid var(--border)' }}>
+            <div className="text-xl font-bold">{user.posts}</div>
+            <div className="text-xs" style={{ color: 'var(--muted)' }}>Posts</div>
+          </div>
+          <div className="text-center p-3 rounded-xl" style={{ background: 'var(--card)', border: '1px solid var(--border)' }}>
+            <div className="text-xl font-bold">{user.followers.toLocaleString()}</div>
+            <div className="text-xs" style={{ color: 'var(--muted)' }}>Followers</div>
+          </div>
+          <div className="text-center p-3 rounded-xl" style={{ background: 'var(--card)', border: '1px solid var(--border)' }}>
+            <div className="text-xl font-bold">{user.following}</div>
+            <div className="text-xs" style={{ color: 'var(--muted)' }}>Following</div>
           </div>
         </div>
-      )}
-      <div className="flex border-t border-nexus-border mt-4">
-        <button className="flex-1 py-3 text-sm font-medium text-nexus-accent border-b-2 border-nexus-accent">Posts</button>
-        <button className="flex-1 py-3 text-sm font-medium text-nexus-muted">Media</button>
-        <button className="flex-1 py-3 text-sm font-medium text-nexus-muted">Likes</button>
-      </div>
-      <div className="grid grid-cols-3 gap-0.5 mt-0.5">
-        {posts.slice(0, 9).map((post) => (
-          <div key={post.id} className="aspect-square bg-nexus-card flex items-center justify-center text-xs p-2 text-center">
-            <span className="text-nexus-muted line-clamp-3">{post.content.slice(0, 40)}...</span>
+        {myPosts.length > 0 && (
+          <div className="space-y-2">
+            <h3 className="text-sm font-bold uppercase" style={{ color: 'var(--muted)' }}>My Posts</h3>
+            {myPosts.map((p) => (
+              <div key={p.id} className="p-3 rounded-xl" style={{ background: 'var(--card)', border: '1px solid var(--border)' }}>
+                <div className="text-sm">{p.content}</div>
+                <div className="text-xs mt-1" style={{ color: 'var(--muted)' }}>{p.likes} likes</div>
+              </div>
+            ))}
           </div>
-        ))}
+        )}
       </div>
     </div>
   );

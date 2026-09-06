@@ -1,92 +1,50 @@
-# Nexus — Social Super-App
+# Nexus \u2014 Social Super-App
 
-> A social super-app combining features of X, Facebook, Instagram, WhatsApp, Spotify, Telegram, and Snapchat.
-
-Built with Next.js 14, TypeScript, Tailwind CSS, and Zustand. Deployed on Cloudflare Pages.
+A secure social super-app combining features of Telegram, WhatsApp, Instagram, X, Facebook, Spotify, and Snapchat with an AI Playground inspired by Google AI Studio.
 
 ## Features
 
-### Feed (X / Facebook style)
-- Create posts with text
-- Like and comment on posts
-- Scroll through a social feed
-- Real-time interaction states
+### Social
+- **Feed** \u2014 Scrollable social feed with posts, likes, comments
+- **Stories** \u2014 Ephemeral stories with gradient backgrounds
+- **Chat** \u2014 Real-time messaging with E2E encryption indicators
+- **Music** \u2014 Full music player with 8 tracks, play/pause/next/prev
+- **Profile** \u2014 User profile with stats and editing
 
-### Stories (Instagram / Snapchat style)
-- Create stories with gradient backgrounds
-- Auto-advancing story viewer with progress bars
-- Story rings showing viewed/unviewed status
-- Reply to stories
+### AI Playground (Google AI Studio-inspired)
+- **Chat** \u2014 6 simulated Gemini models with streaming, token tracking
+- **Compare** \u2014 Side-by-side dual-model comparison
+- **Media** \u2014 Image generation gallery
+- **Live** \u2014 Real-time voice interaction UI with waveform
+- **URL Context** \u2014 AI-powered URL summarization
+- **Usage** \u2014 Rate limits dashboard (RPM/TPM/RPD)
 
-### Chat (WhatsApp / Telegram style)
-- Contact list with online status
-- Real-time messaging with auto-replies
-- Unread badges
-- Message timestamps
-- Search chats
+### Security & Privacy
+- **E2E Encryption** \u2014 AES-GCM 256-bit via Web Crypto API
+- **Biometric Auth** \u2014 WebAuthn (fingerprint/face ID)
+- **OAuth** \u2014 Google, Apple, GitHub login
+- **Server Mode** \u2014 Toggle between centralized and decentralized
+- **Ephemeral Storage** \u2014 Auto-delete sensitive data
+- **2FA** \u2014 Two-factor authentication
 
-### Music (Spotify style)
-- Full playlist with 8 tracks
-- Play / pause / next / previous controls
-- Progress bar with time tracking
-- Now playing card with animated cover art
-- Mini player accessible from any page
-
-### Profile (Instagram style)
-- User stats (posts, followers, following)
-- Edit profile (name, username, bio)
-- Post grid view
-- Tab navigation
+### Experience
+- **7 App Themes** \u2014 Telegram, WhatsApp, Instagram, X, Facebook, Spotify, Snapchat + Nexus default
+- **Custom Palettes** \u2014 Pick any accent color
+- **Dark/Light Mode** \u2014 Full color mode switching
+- **Haptic Feedback** \u2014 Vibration patterns for all interactions
+- **Offline Support** \u2014 Service worker with cache strategy
+- **Cross-Device Sync** \u2014 Real-time sync indicator
+- **Cloud Backup** \u2014 Encrypted backup indicators
+- **PWA** \u2014 Installable with app manifest and service worker
 
 ## Tech Stack
-
-- **Framework**: Next.js 14 (App Router, static export)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS with custom glassmorphism design
-- **State**: Zustand with localStorage persistence
-- **PWA**: Installable with offline support
-- **Deployment**: Cloudflare Pages
-
-## Getting Started
-
-```bash
-npm install
-npm run dev
-```
-
-Open http://localhost:3000
-
-## Build
-
-```bash
-npm run build
-```
-
-Outputs static files to `out/` directory.
+- Next.js 14 (App Router, static export)
+- TypeScript
+- Tailwind CSS
+- Zustand with persist middleware
+- Web Crypto API for encryption
+- WebAuthn for biometric auth
+- Service Worker for offline
 
 ## Deploy
-
-Push to GitHub and connect to Cloudflare Pages. The app is configured for static export with `output: 'export'`.
-
-## Design
-
-- Dark glassmorphism UI with gradient accents (indigo, purple, pink)
-- Mobile-first, max-width 480px container
-- Bottom navigation bar with 5 tabs
-- Smooth animations and transitions
-- PWA installable on mobile devices
-
-## Project Structure
-
-```
-nexus-social-app/
-- app/ (layout, pages, globals.css)
-- components/ (Layout, TopBar, BottomNav, CreatePost, PostCard)
-- store/ (Zustand store with all state)
-- lib/ (utility functions)
-- public/ (manifest, sw, icons, robots)
-```
-
-## License
-
-MIT
+Deployed to GitHub Pages: https://munyoro577.github.io/nexus/nexus-social-app/
