@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import ThemeProvider from '@/components/ThemeProvider';
+import Layout from '@/components/Layout';
 
 export const metadata: Metadata = {
-  title: 'Nexus \u2014 Social Super-App',
+  title: 'Nexus — Social Super-App',
   description: 'A secure social super-app combining features of Telegram, WhatsApp, Instagram, X, Facebook, Spotify, and Snapchat with E2E encryption and AI playground.',
   manifest: '/manifest.json',
   applicationName: 'Nexus',
@@ -26,7 +27,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="apple-touch-icon" href="/icon-192.png" />
       </head>
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <Layout>{children}</Layout>
+        </ThemeProvider>
       </body>
     </html>
   );
