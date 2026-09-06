@@ -1,28 +1,32 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
-import Layout from '@/components/Layout';
+import ThemeProvider from '@/components/ThemeProvider';
 
 export const metadata: Metadata = {
-  title: 'Nexus — Social Super-App',
-  description: 'Nexus — a social super-app combining features of X, Facebook, Instagram, WhatsApp, Spotify, Telegram, and Snapchat',
+  title: 'Nexus \u2014 Social Super-App',
+  description: 'A secure social super-app combining features of Telegram, WhatsApp, Instagram, X, Facebook, Spotify, and Snapchat with E2E encryption and AI playground.',
   manifest: '/manifest.json',
+  applicationName: 'Nexus',
   appleWebApp: { capable: true, statusBarStyle: 'black-translucent', title: 'Nexus' },
 };
 
 export const viewport: Viewport = {
-  width: 'device-width', initialScale: 1, maximumScale: 1, userScalable: false, themeColor: '#0a0a0f',
+  themeColor: '#0a0a0f',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <link rel="icon" href="/icon-192.png" />
+        <link rel="apple-touch-icon" href="/icon-192.png" />
       </head>
       <body>
-        <Layout>{children}</Layout>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
