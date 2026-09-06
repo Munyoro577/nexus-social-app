@@ -92,7 +92,7 @@ export interface AIModel {
   color: string;
 }
 
-export interface AIEssage {
+export interface AIMessage {
   id: string;
   role: 'user' | 'model' | 'system';
   content: string;
@@ -121,41 +121,41 @@ export interface GeneratedImage {
 }
 
 const seedUsers: User[] = [
-  { id: 'u1', name: 'You', username: '@you', avatar: '\ud83e\uddd1', bio: 'Living life one post at a time \u2728', followers: 1248, following: 392, posts: 47 },
+  { id: 'u1', name: 'You', username: '@you', avatar: 'ğŸ§‘', bio: 'Living life one post at a time âœ¨', followers: 1248, following: 392, posts: 47 },
 ];
 
 const seedPosts: Post[] = [
   {
-    id: 'p1', userId: 'u2', userName: 'Sarah Chen', userAvatar: '\ud83d\udc69',
-    content: 'Just finished my morning hike! The view from Eagle Peak was absolutely worth the 6am start. Nature really is the best therapy \ud83c\udfd6\ufe0f',
+    id: 'p1', userId: 'u2', userName: 'Sarah Chen', userAvatar: 'ğŸ‘©',
+    content: 'Just finished my morning hike! The view from Eagle Peak was absolutely worth the 6am start. Nature really is the best therapy ğŸ–ï¸',
     timestamp: Date.now() - 3600000, likes: 247, liked: false,
     comments: [
-      { id: 'c1', userName: 'Marcus Lee', userAvatar: '\ud83d\udc68', content: 'Stunning shot! What camera did you use?', timestamp: Date.now() - 300000 },
-      { id: 'c2', userName: 'Priya K', userAvatar: '\ud83d\udc69\u200d\ud83e\uddb0', content: 'Adding this to my bucket list!', timestamp: Date.now() - 1800000 },
+      { id: 'c1', userName: 'Marcus Lee', userAvatar: 'ğŸ‘¨', content: 'Stunning shot! What camera did you use?', timestamp: Date.now() - 3000000 },
+      { id: 'c2', userName: 'Priya K', userAvatar: 'ğŸ‘©â€ğŸ¦°', content: 'Adding this to my bucket list!', timestamp: Date.now() - 1800000 },
     ],
   },
   {
-    id: 'p2', userId: 'u3', userName: 'Alex Rivera', userAvatar: '\ud83e\uddd4',
-    content: 'Hot take: pineapple absolutely belongs on pizza and I will die on this hill \ud83c\udf52\ud83c\udf55',
+    id: 'p2', userId: 'u3', userName: 'Alex Rivera', userAvatar: 'ğŸ§”',
+    content: 'Hot take: pineapple absolutely belongs on pizza and I will die on this hill ğŸ’ğŸ•',
     timestamp: Date.now() - 7200000, likes: 1089, liked: true,
     comments: [
-      { id: 'c3', userName: 'Jordan Kim', userAvatar: '\ud83e\uddd1\u200d\ud83e\uddb1', content: 'This is war.', timestamp: Date.now() - 6000000 },
+      { id: 'c3', userName: 'Jordan Kim', userAvatar: 'ğŸ§‘â€ğŸ¦±', content: 'This is war.', timestamp: Date.now() - 6000000 },
     ],
   },
   {
-    id: 'p3', userId: 'u4', userName: 'Maya Patel', userAvatar: '\ud83d\udc67',
-    content: 'Three months into my startup journey. Some days feel impossible, but then I remember why I started. To anyone building something \u2014 keep going. The world needs what you\u2019re making. \ud83d\ude80',
+    id: 'p3', userId: 'u4', userName: 'Maya Patel', userAvatar: 'ğŸ‘§',
+    content: 'Three months into my startup journey. Some days feel impossible, but then I remember why I started. To anyone building something â€” keep going. The world needs what youâ€™re making. ğŸš€',
     timestamp: Date.now() - 14400000, likes: 3421, liked: false,
     comments: [
-      { id: 'c4', userName: 'Tom Wright', userAvatar: '\ud83d\udc68\u200d\ud83e\uddb3', content: 'Needed this today. Thank you.', timestamp: Date.now() - 12000000 },
-      { id: 'c5', userName:'Lisa Zhang', userAvatar: '\ud83d\udc69\u200d\ud83e\uddb0', content: 'What\u2019s the startup about?', timestamp: Date.now() - 10000000 },
-      { id: 'c6', userName: 'Maya Patel', userAvatar: '\ud83d\udc67', content: '@Lisa \u2014 AI tools for small businesses! Will share more soon.', timestamp: Date.now() - 9000000 },
+      { id: 'c4', userName: 'Tom Wright', userAvatar: 'ğŸ‘¨â€ğŸ¦³', content: 'Needed this today. Thank you.', timestamp: Date.now() - 12000000 },
+      { id: 'c5', userName: 'Lisa Zhang', userAvatar: 'ğŸ‘©â€ğŸ¦°', content: 'Whatâ€™s the startup about?', timestamp: Date.now() - 10000000 },
+      { id: 'c6', userName: 'Maya Patel', userAvatar: 'ğŸ‘§', content: '@Lisa â€” AI tools for small businesses! Will share more soon.', timestamp: Date.now() - 9000000 },
     ],
   },
   {
-    id: 'p4', userId: 'u5', userName: 'Kai Johnson', userAvatar: '\ud83e\uddd1\u200d\ud83c\udfa4',
-    content: 'New track dropping this Friday. Been working on it for months. Here\u2019s a sneak peek of the lyrics: "City lights blur into stars, we\u2019re driving through Mars..." \ud83c\udfb5',
-    timestamp: Date.now() - 216000000, likes: 876, liked: false,
+    id: 'p4', userId: 'u5', userName: 'Kai Johnson', userAvatar: 'ğŸ§‘â€ğŸ¤',
+    content: 'New track dropping this Friday. Been working on it for months. Hereâ€™s a sneak peek of the lyrics: "City lights blur into stars, weâ€™re driving through Mars..." ğŸµ',
+    timestamp: Date.now() - 21600000, likes: 876, liked: false,
     comments: [],
   },
 ];
@@ -169,34 +169,34 @@ const storyColors = [
 ];
 
 const seedStories: Story[] = [
-  { id: 's1', userId: 'u2', userName: 'Sarah', userAvatar: '\ud83d\udc69', content: 'Morning vibes \u2600\ufe0f', bgColor: storyColors[0], timestamp: Date.now() - 1800000, viewed: false },
-  { id: 's2', userId: 'u3', userName: 'Alex', userAvatar: '\ud83e\uddd4', content: 'Pizza night \ud83c\udf55', bgColor: storyColors[1], timestamp: Date.now() - 3600000, viewed: false },
-  { id: 's3', userId: 'u4', userName: 'Maya', userAvatar: '\ud83d\udc67', content: 'Building mode \ud83d\ude80', bgColor: storyColors[2], timestamp: Date.now() - 5400000, viewed: false },
-  { id: 's4', userId: 'u5', userName: 'Kai', userAvatar: '\ud83e\uddd1\u200d\ud83c\udfa4', content: 'Studio session \ud83c\udfb5', bgColor: storyColors[3], timestamp: Date.now() - 72000000, viewed: true },
+  { id: 's1', userId: 'u2', userName: 'Sarah', userAvatar: 'ğŸ‘©', content: 'Morning vibes â˜€ï¸', bgColor: storyColors[0], timestamp: Date.now() - 1800000, viewed: false },
+  { id: 's2', userId: 'u3', userName: 'Alex', userAvatar: 'ğŸ§”', content: 'Pizza night ğŸ•', bgColor: storyColors[1], timestamp: Date.now() - 3600000, viewed: false },
+  { id: 's3', userId: 'u4', userName: 'Maya', userAvatar: 'ğŸ‘§', content: 'Building mode ğŸš€', bgColor: storyColors[2], timestamp: Date.now() - 5400000, viewed: false },
+  { id: 's4', userId: 'u5', userName: 'Kai', userAvatar: 'ğŸ§‘â€ğŸ¤', content: 'Studio session ğŸµ', bgColor: storyColors[3], timestamp: Date.now() - 7200000, viewed: true },
 ];
 
 const seedChats: Chat[] = [
   {
-    id: 'chat1', contactId: 'u2', contactName: 'Sarah Chen', contactAvatar: '\ud83d\udc69', contactStatus: 'Hey! Are we still on for hiking?',
+    id: 'chat1', contactId: 'u2', contactName: 'Sarah Chen', contactAvatar: 'ğŸ‘©', contactStatus: 'Hey! Are we still on for hiking?',
     messages: [
-      { id: 'm1', senderId: 'u2', content: 'Hey! Are we still on for hinking?', timestamp: Date.now() - 7200000, type: 'text', encrypted: true },
+      { id: 'm1', senderId: 'u2', content: 'Hey! Are we still on for hiking?', timestamp: Date.now() - 7200000, type: 'text', encrypted: true },
       { id: 'm2', senderId: 'me', content: 'Absolutely! 6am at the trailhead?', timestamp: Date.now() - 7000000, type: 'text', encrypted: true },
       { id: 'm3', senderId: 'u2', content: 'Perfect, see you there!', timestamp: Date.now() - 6900000, type: 'text', encrypted: true },
-      { id: 'm4', senderId: 'u2', content: 'Don\u2019t forget water \ud83d\udca7', timestamp: Date.now() - 6800000, type: 'text', encrypted: true },
+      { id: 'm4', senderId: 'u2', content: 'Donâ€™t forget water ğŸ’§', timestamp: Date.now() - 6800000, type: 'text', encrypted: true },
     ],
-    lastMessage: "Don't forget water \ud83d\udca7", lastMessageTime: Date.now() - 6800000, unread: 2, online: true,
+    lastMessage: "Don't forget water ğŸ’§", lastMessageTime: Date.now() - 6800000, unread: 2, online: true,
   },
   {
-    id: 'chat2', contactId: 'u3', contactName: 'Alex Rivera', contactAvatar: '\ud83e\uddd4', contactStatus: 'Bro the pizza debate continues...',
+    id: 'chat2', contactId: 'u3', contactName: 'Alex Rivera', contactAvatar: 'ğŸ§”', contactStatus: 'Bro the pizza debate continues...',
     messages: [
       { id: 'm5', senderId: 'u3', content: 'Bro the pizza debate continues...', timestamp: Date.now() - 10800000, type: 'text', encrypted: true },
-      { id: 'm6', senderId: 'me', content: 'Pineapple stays. End of discussion \ud83d\ude24', timestamp: Date.now() - 10700000, type: 'text', encrypted: true },
-      { id: 'm7', senderId: 'u3', content: 'We\u2019ll see about that...', timestamp: Date.now() - 10600000, type: 'text', encrypted: true },
+      { id: 'm6', senderId: 'me', content: 'Pineapple stays. End of discussion ğŸ˜¤', timestamp: Date.now() - 10700000, type: 'text', encrypted: true },
+      { id: 'm7', senderId: 'u3', content: 'Weâ€™ll see about that...', timestamp: Date.now() - 10600000, type: 'text', encrypted: true },
     ],
     lastMessage: "We'll see about that...", lastMessageTime: Date.now() - 10600000, unread: 0, online: false,
   },
   {
-    id: 'chat3', contactId: 'u4', contactName: 'Maya Patel', contactAvatar: '\ud83d\udc67', contactStatus: 'Thank you so much for the encouragement!',
+    id: 'chat3', contactId: 'u4', contactName: 'Maya Patel', contactAvatar: 'ğŸ‘§', contactStatus: 'Thank you so much for the encouragement!',
     messages: [
       { id: 'm8', senderId: 'u4', content: 'Thank you so much for the encouragement!', timestamp: Date.now() - 86400000, type: 'text', encrypted: true },
       { id: 'm9', senderId: 'me', content: 'You earned it. Keep building!', timestamp: Date.now() - 86300000, type: 'text', encrypted: true },
@@ -204,35 +204,35 @@ const seedChats: Chat[] = [
     lastMessage: 'You earned it. Keep building!', lastMessageTime: Date.now() - 86300000, unread: 0, online: true,
   },
   {
-    id: 'chat4', contactId: 'u5', contactName: 'Kai Johnson', contactAvatar: '\ud83e\uddd1\u200d\ud83c\udfa4', contactStatus: 'Wait until you hear the final mix \ud83d\udd25',
+    id: 'chat4', contactId: 'u5', contactName: 'Kai Johnson', contactAvatar: 'ğŸ§‘â€ğŸ¤', contactStatus: 'Wait until you hear the final mix ğŸ”¥',
     messages: [
-      { id: 'm10', senderId: 'u5', content: 'Wait until you hear the final mix \ud83d\udd25', timestamp: Date.now() - 172800000, type: 'text', encrypted: true },
+      { id: 'm10', senderId: 'u5', content: 'Wait until you hear the final mix ğŸ”¥', timestamp: Date.now() - 172800000, type: 'text', encrypted: true },
     ],
-    lastMessage: 'Wait until you hear the final mix \ud83d\udd25', lastMessageTime: Date.now() - 172800000, unread: 1, online: false,
+    lastMessage: 'Wait until you hear the final mix ğŸ”¥', lastMessageTime: Date.now() - 172800000, unread: 1, online: false,
   },
 ];
 
 const seedTracks: Track[] = [
-  { id: 't1', title: 'Neon Skyline', artist: 'Kai Johnson', album: 'Midnight Drive', duration: 215, cover: '\ud83c\udf03' },
-  { id: 't2', title: 'Through Mars', artist: 'Kai Johnson', album: 'Midnight Drive', duration: 198, cover: '\ud83e\ude90' },
-  { id: 't3', title: 'City Lights', artist: 'Luna Echo', album: 'Urban Dreams', duration: 243, cover: '\ud83c\udf06' },
-  { id: 't4', title: 'Gravity', artist: 'The Pulse', album: 'Orbit', duration: 187, cover: '\ud83c\udf00' },
-  { id: 't5', title: 'Sunset Boulevard', artist: 'Neon Waves', album: 'Golden Hour', duration: 224, cover: '\ud83c\udf05' },
-  { id: 't6', title: 'Electric Soul', artist: 'Aria Stone', album: 'Voltage', duration: 256, cover: '\u26a1' },
-  { id: 't7', title: 'Lost in Tokyo', artist: 'Future Ghost', album: 'Shibuya', duration: 312, cover: '\ud83c\udfef' },
-  { id: 't8', title: 'Crystal Clear', artist: 'Maya Patel', album: 'Clarity', duration: 201, cover: '\ud83d\udc8e' },
+  { id: 't1', title: 'Neon Skyline', artist: 'Kai Johnson', album: 'Midnight Drive', duration: 215, cover: 'ğŸŒƒ' },
+  { id: 't2', title: 'Through Mars', artist: 'Kai Johnson', album: 'Midnight Drive', duration: 198, cover: 'ğŸª' },
+  { id: 't3', title: 'City Lights', artist: 'Luna Echo', album: 'Urban Dreams', duration: 243, cover: 'ğŸŒ†' },
+  { id: 't4', title: 'Gravity', artist: 'The Pulse', album: 'Orbit', duration: 187, cover: 'ğŸŒ€' },
+  { id: 't5', title: 'Sunset Boulevard', artist: 'Neon Waves', album: 'Golden Hour', duration: 224, cover: 'ğŸŒ…' },
+  { id: 't6', title: 'Electric Soul', artist: 'Aria Stone', album: 'Voltage', duration: 256, cover: 'âš¡' },
+  { id: 't7', title: 'Lost in Tokyo', artist: 'Future Ghost', album: 'Shibuya', duration: 312, cover: 'ğŸ¯' },
+  { id: 't8', title: 'Crystal Clear', artist: 'Maya Patel', alvbum: 'Clarity', duration: 201, cover: 'ğŸ’§' },
 ];
 
 const autoReplies = [
-  'That\u2019s awesome! \ud83d\ude04',
+  'Thatâ€™s awesome! ğŸ˜„',
   'No way, really?',
-  'Haha I can\u2019t believe that happened \ud83d\ude02',
-  'For sure! Let\u2019s do it.',
+  'Haha I canâ€™t believe that happened ğŸ˜‚',
+  'For sure! Letâ€™s do it.',
   'I was just thinking the same thing!',
   'Tell me more about that.',
-  'That sounds amazing \ud83d\udd25',
-  'Wow, congrats! \ud83c\udf89',
-  'I\u2019ll let you know soon.',
+  'That sounds amazing ğŸ”¥',
+  'Wow, congrats! ğŸ‰',
+  'Iâ€™ll let you know soon.',
   'Sounds good to me!',
 ];
 
@@ -246,12 +246,12 @@ const aiModels: AIModel[] = [
 ];
 
 const personaPrefixes: Record<string, string> = {
-  professional: '[Professional tone] ',
-  friendly: '[Friendly tone] ',
-  creative: '[Creative tone] ',
-  concise: '[Concise] ',
-  academic: '[Academic] ',
-  witty: '[Witty] ',
+  professional: '[Professional tone]  ',
+  friendly: '[Friendly tone]  ',
+  creative: '[Creative tone]  ',
+  concise: '[Concise]  ',
+  academic: '[Academic]  ',
+  witty: '[Witty]  ',
 };
 
 function generateAIResponse(prompt: string, modelId: string, systemInstruction: string, persona: string): string {
@@ -265,15 +265,15 @@ function generateAIResponse(prompt: string, modelId: string, systemInstruction: 
     if (systemInstruction) response += `I'm operating with your custom instructions in mind. `;
     response += `How can I help you today? I can assist with writing, analysis, coding, math, creative tasks, and more.`;
   } else if (p.includes('code') || p.includes('function') || p.includes('program')) {
-    response = `Here's an approach I'd suggest:\n\n\`\`\`javascript\nfunction example(input) {\n  if (!input) return null;\n  const result = input.map(item => ({\n    ...item,\n    processed: true,\n    timestamp: Date.now()\n  }));\n  return result.filter(r => r.valid !== false);\n}\n\`\`\`\n\nThis handles edge cases, preserves data integrity, and runs in O(n) time. Want me to adapt it for a specific use case?`;
+    response = `Here's an approach I'd suggest:\n\n\n\`\`\`javascript\nfunction example(input) {\n  if (!input) return null;\n  const result = input.map(item => ({\n    ...item,\n    processed: true,\n    timestamp: Date.now()\n  }));\n  return result.filter(r => r.valid !== false);\n}\n\`\`\`\n\nThis handles edge cases, preserves data integrity, and runs in O(n) time. Want me to adapt it for a specific use case?`;
   } else if (p.includes('image') || p.includes('generate') || p.includes('draw') || p.includes('picture')) {
-    response = `I can help with image generation! In a production environment, I'd send your prompt to the image model and return a generated image. Here's what I'd create based on "${prompt.slice(0, 80)}":\n\n\ud83c\udfa8 A visually stunning composition with vibrant colors, dynamic lighting, and intricate details that capture the essence of your request.`;
+    response = `I can help with image generation! In a production environment, I'd send your prompt to the image model and return a generated image. Here's what I'd create based on "${prompt.slice(0, 80)}":\n\nğŸ¨ A visually stunning composition with vibrant colors, dynamic lighting, and intricate details that capture the essence of your request.`;
   } else if (p.includes('summarize') || p.includes('summary')) {
-    response = `Here's a concise summary:\n\n\u2022 **Key Point 1**: The main idea centers around the core theme\n\u2022 **Key Point 2**: Supporting details provide context and depth\n\u2022 **Key Point 3**: The conclusion ties everything together\n\nWould you like me to expand on any of these points?`;
+    response = `Here's a concise summary:\n\nâ€¢ **Key Point 1**: The main idea centers around the core theme\nâ€¢ **Key Point 2**: Supporting details provide context and depth\nâ€¢ **Key Point 3**: The conclusion ties everything together\n\nWould you like me to expand on any of these points?`;
   } else if (p.includes('write') || p.includes('story') || p.includes('poem')) {
-    response = `Here's a creative response:\n\nIn the quiet hum of morning light,\nwhere coffee steam meets dawn's first breath,\na story waits within the glow \u2014\nnot yet told, but felt.\n\nEach word a brushstroke on the page,\neach line a path through unmarked snow.\nThe pen moves forward, trusting ink\nto find what hearts already know.`;
+    response = `Here's a creative response:\n\nIn the quiet hum of morning light,\nwhere coffee steam meets dawn's first breath,\na story waits within the glow â€”\nnot yet told, but felt.\n\nEach word a brushstroke on the page,\neach line a path through unmarked snow.\nThe pen moves forward, trusting ink\nto find what hearts already know.`;
   } else if (p.includes('explain') || p.includes('what is') || p.includes('how does')) {
-    response = `Great question! Let me break this down:\n\n**Overview**: The concept involves several interconnected parts that work together.\n\n**How it works**: Think of it like a well-organized system \u2014 each component has a specific role, and they communicate through defined interfaces.\n\n**Why it matters**: Understanding this gives you a mental model to reason about similar systems.`;
+    response = `Great question! Let me break this down:\n\n**Overview**: The concept involves several interconnected parts that work together.\n\n**How it works**: Think of it like a well-organized system â€” each component has a specific role, and they communicate through defined interfaces.\n\n**Why it matters**: Understanding this gives you a mental model to reason about similar systems.`;
   } else {
     response = `I've processed your prompt: "${prompt.slice(0, 100)}"\n\nBased on my analysis, here's what I can tell you:\n\nThis is a simulated response from ${aiModels.find(m => m.id === modelId)?.name || 'Gemini'}. In a production environment, I'd connect to the actual Gemini API and provide a detailed, accurate response with real reasoning.\n\nWould you like me to elaborate?`;
   }
@@ -300,7 +300,7 @@ const imageGradients = [
   'linear-gradient(135deg, #ff9a9e, #fecfef)',
 ];
 
-const imageEmojis = ['\ud83c\udf05', '\ud83c\udf0c', '\ud83c\udfd6\ufe0f', '\ud83c\udf0a', '\ud83c\udf38', '\ud83c\udfa8', '\u2728', '\ud83d\udd25', '\ud83d\udcab', '\ud83c\udf08'];
+const imageEmojis = ['ğŸŒ…', 'ğŸŒŒ', 'ğŸ–ï¸', 'ğŸŒŠ', 'ğŸŒ¸', 'ğŸ¨', 'âœ¨', 'ğŸ”¥', 'ğŸ’«', 'ğŸŒˆ'];
 
 interface StoreState {
   // Auth
@@ -329,295 +329,14 @@ interface StoreState {
   setBiometricEnabled: (v: boolean) => void;
   setTwoFactorEnabled: (v: boolean) => void;
   setReadReceipts: (v: boolean) => void;
-  setOnlineStatus: (v: boolean) => void;
+  setOnlineStatus: (v: boolean2 ) => void;
 
   // AI
   aiPersona: string;
   aiUiStyle: string;
-  setAiPersona: (p) => void;
-  setAiUiStyle: (s) => void;
+  setAiPersona: (p: string) => void;
+  setAiUiStyle: (s: string) => void;
 
   // Sync & Backup
   syncEnabled: boolean;
-  offlineMode: boolean;
-  cloudBackup: boolean;
-  backupEncryption: boolean;
-  setSyncEnabled: (v: boolean) => void;
-  setOfflineMode: (v: boolean) => void;
-  setCloudBackup: (v: boolean) => void;
-  setBackupEncryption: (v: boolean) => void;
-
-  // Experience
-  hapticsEnabled: boolean;
-  soundEnabled: boolean;
-  animationsEnabled: boolean;
-  reducedMotion: boolean;
-  dataSaver: boolean;
-  setHapticsEnabled: (v: boolean) => void;
-  setSoundEnabled: (v: boolean) => void;
-  setAnimationsEnabled: (v: boolean) => void;
-  setReducedMotion: (v: boolean) => void;
-  setDataSaver: (v: boolean) => void;
-
-  // Social data
-  user: User;
-  posts: Post[];
-  stories: Story[];
-  chats: Chat[];
-  tracks: Track[];
-  currentTrack: Track | null;
-  isPlaying: boolean;
-  currentTime: number;
-  currentChatId: string | null;
-  unreadChats: number;
-  storyColors: string[];
-
-  // AI Playground
-  aiModels: AIModel[];
-  aiConversations: AIConversation[];
-  currentConversationId: string | null;
-  isStreaming: boolean;
-  generatedImages: GeneratedImage[];
-  usageRpm: number;
-  usageTpm: number;
-  usageRpd: number;
-  totalTokensUsed: number;
-  totalEstimatedCost: number;
-  compareModelA: string;
-  compareModelB: string;
-
-  // Feed
-  addPost: (content: string, image?: string) => void;
-  toggleLike: (postId: string) => void;
-  addComment: (postId: string, content: string) => void;
-
-  // Stories
-  addStory: (content: string, bgColor: string) => void;
-  markStoryViewed: (storyId: string) => void;
-
-  // Chat
-  sendMessage: (chatId: string, content: string) => void;
-  openChat: (chatId: string) => void;
-  markChatRead: (chatId: string) => void;
-
-  // Music
-  playTrack: (track: Track) => void;
-  togglePlay: () => void;
-  nextTrack: () => void;
-  prevTrack: () => void;
-  setCurrentTime: (time: number) => void;
-  updateProfile: (data: Partial<User>) => void;
-
-  // AI Playground
-  sendAIMessage: (prompt: string) => void;
-  setSystemInstruction: (instruction: string) => void;
-  createConversation: (model: string) => void;
-  setCompareModels: (a: string, b: string) => void;
-  generateImage: (prompt: string) => void;
-  getUrlSummary: (url: string) => void;
-  clearConversation: () => void;
-}
-
-export const useStore = create<StoreState>()
-  persist(
-    (set, get) => ({
-      // Auth
-      authUser: null,
-      setAuthUser: (user) => set({ authUser: user }),
-
-      // Theme
-      themeId: 'nexus',
-      colorMode: 'dark',
-      customPalette: null,
-      setThemeId: (id) => set({ themeId: id }),
-      setColorMode: (mode) => set({ colorMode: mode }),
-      setCustomPalette: (palette) => set({ customPalette: palette }),
-
-      // Security
-      serverMode: 'centralized',
-      e2eEncryption: true,
-      ephemeralStorage: false,
-      biometricEnabled: false,
-      twoFactorEnabled: false,
-      readReceipts: true,
-      onlineStatus: true,
-      setServerMode: (mode) => set({ serverMode: mode }),
-      setE2eEncryption: (v) => set({ e2eEncryption: v }),
-      setEphemeralStorage: (v) => set({ ephemeralStorage: v }),
-      setBiometricEnabled: (v) => set({ biometricEnabled: v }),
-      setTwoFactorEnabled: (v) => set({ twoFactorEnabled: v }),
-      setReadReceipts: (v) => set({ readReceipts: v }),
-      setOnlineStatus: (v) => set({ onlineStatus: v }),
-
-      // AI Persona
-      aiPersona: 'friendly',
-      aiUiStyle: 'studio',
-      setAiPersona: (p) => set({ aiPersona: p }),
-      setAiUiStyle: (s) => set({ aiUiStyle: s }),
-
-      // Sync
-      syncEnabled: true,
-      offlineMode: true,
-      cloudBackup: true,
-      backupEncryption: true,
-      setSyncEnabled: (v) => set({ syncEnabled: v }),
-      setOfflineMode: (v) => set({ offlineMode: v }),
-      setCloudBackup: (v) => set({ cloudBackup: v }),
-      setBackupEncryption: (v) => set({ backupEncryption: v }),
-
-      // Experience
-      hapticsEnabled: true,
-      soundEnabled: false,
-      animationsEnabled: true,
-      reducedMotion: false,
-      dataSaver: false,
-      setHapticsEnabled: (v) => { set({ hapticsEnabled: v }); setHapticsEnabled(v); },
-      setSoundEnabled: (v) => set({ soundEnabled: v }),
-      setAnimationsEnabled: (v) => set({ animationsEnabled: v }),
-      setReducedMotion: (v) => set({ reducedMotion: v }),
-      setDataSaver: (v) => set({ dataSaver: v }),
-
-      // Social
-      user: seedUsers[0],
-      posts: seedPosts,
-      stories: seedStories,
-      chats: seedChats,
-      tracks: seedTracks,
-      currentTrack: null,
-      isPlaying: false,
-      currentTime: 0,
-      currentChatId: null,
-      unreadChats: 3,
-      storyColors,
-
-      // AI
-      aiModels,
-      aiConversations: [],
-      currentConversationId: null,
-      isStreaming: false,
-      generatedImages: [],
-      usageRpm: 0,
-      usageTpm: 0,
-      usageRpd: 0,
-      totalTokensUsed: 0,
-      totalEstimatedCost: 0,
-      compareModelA: 'gemini-2.5-pro',
-      compareModelB: 'gemini-2.5-flash',
-
-      addPost: (content, image) => {
-        const { user } = get();
-        const newPost: Post = { id: `p ${Date.now()}`, userId: 'me', userName: user.name, userAvatar: user.avatar, content, image, timestamp: Date.now(), likes: 0, liked: false, comments: [] };
-        set((s) => ({ posts: [newPost, ...s.posts] }));
-      },
-      toggleLike: (postId) => {
-        set((s) => ({ posts: s.posts.map((p) => p.id === postId ? { ...p, liked: !p.liked, likes: p.liked ? p.likes - 1 : p.likes + 1 } : p) }));
-      },
-      addComment: (postId, content) => {
-        const { user } = get();
-        set((s) => ({ posts: s.posts.map((p) => p.id === postId ? { ...p, comments: [...p.comments, { id: `c ${Date.now()}X, userName: user.name, userAvatar: user.avatar, content, timestamp: Date.now() }] } : p) }));
-      },
-      addStory: (content, bgColor) => {
-        const { user } = get();
-        const newStory: Story = { id: `s_${Date.now()}`, userId: 'me', userName: user.name, userAvatar: user.avatar, content, bgColor, timestamp: Date.now(), viewed: false };
-        set((s) => ({ stories: [newStory, ...s.stories] }));
-      },
-      markStoryViewed: (storyId) => {
-        set((s) => ({ stories: s.stories.map((st) => st.id === storyId ? { ...st, viewed: true } : st) }));
-      },
-      sendMessage: (chatId, content) => {
-        const msg: Message = { id: `q m ${Date.now()}`, senderId: 'me', content, timestamp: Date.now(), type: 'text', encrypted: get().e2eEncryption };
-        set((s) => ({ chats: s.chats.map((c) => c.id === chatId ? { ...c, messages: [...c.messages, msg], lastMessage: content, lastMessageTime: msg.timestamp } : c) }));
-        setTimeout(() => {
-          const reply = autoReplies[Math.floor(Math.random() * autoReplies.length)];
-          const replyMsg: Message = { id: `m ${Date.now() + 1}`, senderId: get().chats.find((c) => c.id === chatId)?.contactId ?? 'u2', content: reply, timestamp: Date.now(), type: 'text', encrypted: get().e2eEncryption };
-          set((s) => ({ chats: s.chats.map((c) => c.id === chatId ? { ...c, messages: [...c.messages, replyMsg], lastMessage: reply, lastMessageTime: replyMsg.timestamp } : c) }));
-        }, 1500 + Math.random() * 2000);
-      },
-      openChat: (chatId) => { set({ currentChatId: chatId }); get().markChatRead(chatId); },
-      markChatRead: (chatId) => {
-        set((s) => {
-          const chats = s.chats.map((c) => c.id === chatId ? { ...c, unread: 0 } : c);
-          return { chats, unreadChats: chats.reduce((sum, c) => sum + c.unread, 0) };
-        });
-      },
-      playTrack: (track) => { set({ currentTrack: track, isPlaying: true, currentTime: 0 }); },
-      togglePlay: () => { set((s) => ({ isPlaying: !s.isPlaying })); },
-      nextTrack: () => {
-        const { tracks, currentTrack } = get();
-        if (!currentTrack) return;
-        const idx = tracks.findIndex((t) => t.id === currentTrack.id);
-        set({ currentTrack: tracks[(idx + 1) % tracks.length], currentTime: 0, isPlaying: true });
-      },
-      prevTrack: () => {
-        const { tracks, currentTrack } = get();
-        if (!currentTrack) return;
-        const idx = tracks.findIndex((t) => t.id === currentTrack.id);
-        set({ currentTrack: tracks[(idx - 1 + tracks.length) % tracks.length], currentTime: 0, isPlaying: true });
-      },
-      setCurrentTime: (time) => set({ currentTime: time }),
-      updateProfile: (data) => set((s) => ({ user: { ...s.user, ...data } })),
-
-      createConversation: (model) => {
-        const conv: AIConversation = { id: `conv-${Date.now()}`, title: 'New conversation', model, systemInstruction: '', messages: [], createdAt: Date.now() };
-        set((s) => ({ aiConversations: [conv, ...s.aiConversations], currentConversationId: conv.id }));
-      },
-      setSystemInstruction: (instruction) => {
-        const { currentConversationId, aiConversations } = get();
-        if (!currentConversationId) return;
-        set({ aiConversations: aiConversations.map((c) => c.id === currentConversationId ? { ...c, systemInstruction: instruction } : c) });
-      },
-      sendAIMessage: (prompt) => {
-        const { currentConversationId, aiConversations, aiModels, aiPersona, totalTokensUsed, totalEstimatedCost } = get();
-        if (!currentConversationId) return;
-        const conv = aiConversations.find((c) => c.id === currentConversationId);
-        if (!conv) return;
-        const userMsg: AIMessage = { id: `ai-${Date.now()}`, role: 'user', content: prompt, timestamp: Date.now() };
-        const inputTokens = estimateTokens(prompt);
-        set((s) => ({ aiConversations: s.aiConversations.map((c) => c.id === currentConversationId ? { ...c, messages: [...c.messages, userMsg], title: c.messages.length === 0 ? prompt.slice(0, 40) : c.title } : c), isStreaming: true }));
-        const fullResponse = generateAIResponse(prompt, conv.model, conv.systemInstruction, aiPersona);
-        const outputTokens = estimateTokens(fullResponse);
-        const latency = estimateLatency(conv.model, outputTokens);
-        const model = aiModels.find((m) => m.id === conv.model);
-        const cost = model ? (inputTokens / 1000000) * model.inputCost + (outputTokens / 1000000) * model.outputCost : 0;
-        setTimeout(() => {
-          const aiMsg: AIMessage = { id: `ai-${Date.now() + 1}`, role: 'model', content: fullResponse, model: conv.model, timestamp: Date.now(), tokens: inputTokens + outputTokens, latency };
-          set((s) => ({ isStreaming: false, aiConversations: s.aiConversations.map((c) => c.id === currentConversationId ? { ...c, messages: [...c.messages, aiMsg] } : c), usageRpm: Math.min(s.usageRpm + 1, model?.rpm || 1000), usageTpm: Math.min(s.usageTpm + inputTokens + outputTokens, model?.tpm || 1000000), usageRpd: Math.min(s.usageRpd + 1, model?.rpd || 1000), totalTokensUsed: s.totalTokensUsed + inputTokens + outputTokens, totalEstimatedCost: s.totalEstimatedCost + cost }));
-        }, latency);
-      },
-      setCompareModels: (a, b) => set({ compareModelA: a, compareModelB: b }),
-      generateImage: (prompt) => {
-        const img: GeneratedImage = { id: `img-${Date.now()}`, prompt, model: 'nano-banana', gradient: imageGradients[Math.floor(Math.random() * imageGradients.length)], emoji: imageEmojis[Math.floor(Math.random() * imageEmojis.length)], timestamp: Date.now() };
-        set((s) => ({ generatedImages: [img, ...s.generatedImages] }));
-      },
-      getUrlSummary: (url) => {
-        const summaryMsg: AIMessage = { id: `ai-url-${Date.now()}`, role: 'model', content: `I've retrieved and analyzed the content from ${url}.\n\n**Summary:**\n\u2022 The page appears to be a web resource with relevant content\n\u2022 Key topics include the main subject matter\n\u2022 The content is structured for readability\n\n*Note: In production, this would use the URL Context tool to fetch real content.*`, model: 'gemini-2.5-flash', timestamp: Date.now(), tokens: 150, latency: 1200 };
-        const { currentConversationId } = get();
-        if (!currentConversationId) return;
-        set((s) => ({ aiConversations: s.aiConversations.map((c) => c.id === currentConversationId ? { ...c, messages: [...c.messages, summaryMsg] } : c), usageRpm: s.usageRpm + 1, totalTokensUsed: s.totalTokensUsed + 150 }));
-      },
-      clearConversation: () => {
-        const { currentConversationId } = get();
-        if (!currentConversationId) return;
-        set((s) => ({ aiConversations: s.aiConversations.map((c) => c.id === currentConversationId ? { ...c, messages: [] } : c) }));
-      },
-    }),
-    {
-      name: 'nexus-storage',
-      partialize: (s) => ({
-        user: s.user, posts: s.posts, stories: s.stories, chats: s.chats,
-        generatedImages: s.generatedImages, aiConversations: s.aiConversations,
-        totalTokensUsed: s.totalTokensUsed, totalEstimatedCost: s.totalEstimatedCost,
-        themeId: s.themeId, colorMode: s.colorMode, customPalette: s.customPalette,
-        serverMode: s.serverMode, e2eEncryption: s.e2eEncryption, ephemeralStorage: s.ephemeralStorage,
-        biometricEnabled: s.biometricEnabled, twoFactorEnabled: s.twoFactorEnabled,
-        readReceipts: s.readReceipts, onlineStatus: s.onlineStatus,
-        aiPersona: s.aiPersona, aiUiStyle: s.aiUiStyle,
-        syncEnabled: s.syncEnabled, offlineMode: s.offlineMode,
-        cloudBackup: s.cloudBackup, backupEncryption: s.backupEncryption,
-        hapticsEnabled: s.hapticsEnabled, soundEnabled: s.soundEnabled,
-        animationsEnabled: s.inimationsEnabled, reducedMotion: s.reducedMotion, dataSaver: s.dataSaver,
-        authUser: s.authUser,
-      }),
-    }
-  )
-);
+  offlineMode: booleanÊ  cloudBackup: booleanÂˆ˜XÚİ\[˜Ü\[Ûˆ›ÛÛX[ƒ°¢6WE7–æ4Væ&ÆVC¢‡c¢&ööÆVâ’Óâfö–C°¢6WDöffÆ–æTÖöFS¢‡c¢&ööÆVâ‚’Óâfö–C°¢6WD6Æ÷VD&6·W¢‡c¢&ööÆVâ’Óâfö–C°¢6WD&6·WVæ7'—F–öã¢‡c¢&ööÆVâ’Óâfö–C° ¢òòW‡W&–Væ6P¢†F–74Væ&ÆVC¢&ööÆVã°¢6÷VæDVæ&ÆVC¢&ööÆVã°¢æ–ÖF–öç4Væ&ÆVC¢&ööÆVã°¢&VGV6VDÖ÷F–öã¢&ööÆVã°¢FF6fW#¢&ööÆVã°¢6WD†F–74Væ&ÆVC¢‡c¢&ööÆVâ‚’Óâfö–C°¢6WE6÷VæDVæ&ÆVC¢‡c¢&ööÆVâ‚’Óâfö–C°¢6WDæ–ÖF–öç4Væ&ÆVC¢‡c¢&ööÆVâ’Óâfö–C°¢6WE&VGV6VDÖ÷F–öã¢‡c¢&ööÆVâ’Óâfö–C°¢6WDFF6fW#¢‡c¢&ööÆVâ’Óâfö–C° ¢òò6ö6–ÂFF¢W6W#¢W6W#°¢÷7G3¢÷7EµÓ°¢7F÷&–W3¢7F÷'•µÓ°¢6†G3¢6†EµÓ°¢G&6·3¢G&6µµÓ°¢7W'&VçEG&6³¢G&6²ÂçVÆÃ°¢—5Æ––æs¢&ööÆVã°¢7W'&VçEF–ÖS¢çVÖ&W#°¢7W'&VçD6†D–C¢7G&–ærÂçVÆÃ°¢Vç&VD6†G3¢çVÖ&W#°¢7F÷'”6öÆ÷'3¢7G&–æuµÓ° ¢òò’Æ–w&÷Væ@¢”ÖöFVÇ3¢”ÖöFVÅµÓ°¢”6öçfW'6F–öç3¢”6öçfW'6F–öåµÓ°¢7W'&VçD6öçfW'6F–öä–C¢7G&–ærÂçVÆÃ°¢—57G&VÖ–æs¢&ööÆVàì(€•¹•É…Ñ•‘%µ…•Ìè•¹•É…Ñ•‘%µ…•mtì(€ÕÍ…•IÁ´è¹Õµ‰•Èì(€ÕÍ…•QÁ´è¹Õµ‰•Èì(€ÕÍ…•IÁè¹Õµ‰•Èì(€Ñ½Ñ…±Q½­•¹ÍUÍ•è¹Õµ‰•Èì(€Ñ½Ñ…±ÍÑ¥µ…Ñ•‘½ÍĞè¹Õµ‰•Èì(€½µÁ…É•5½‘•±èÍÑÉ¥¹œì(€½µÁ…É•5½‘•±èÍÑÉ¥¹œì((€€¼¼••(€…‘‘A½ÍĞè€¡½¹Ñ•¹ĞèÍÑÉ¥¹œ°¥µ…”üèÍÑÉ¥¹œ¤€ôøÙ½¥ì(€Ñ½±•1¥­”è€¡Á½ÍÑ%èÍÑÉ¥¹œ¤€ôøÙ½¥ì(€…‘‘½µµ•¹Ğè€¡Á½ÍÑ%èÍÑÉ¥¹œ°½¹Ñ•¹ĞèÍÑÉ¥¹œ¤€ôøÙ½¥ì((€€¼¼MÑ½É¥•Ì(€…‘‘MÑ½Éäè€¡½¹Ñ•¹ĞèÍÑÉ¥¹œ°‰½±½ÈèÍÑÉ¥¹œ¤€ôøÙ½¥ì(€µ…É­MÑ½ÉåY¥•İ•è€¡ÍÑ½Éå%èÍÑÉ¥¹œ¤€ôøÙ½¥ì((€€¼¼¡…Ğ(€Í•¹‘5•ÍÍ…”è€¡¡…Ñ%èÍÑÉ¥¹œ°½¹Ñ•¹ĞèÍÑÉ¥¹œ¤€ôøÙ½¥ì(€½Á•¹¡…Ğè€¡¡…Ñ%èÍÑÉ¥¹œ¤€ôøÙ½¥ì(€µ…É­¡…ÑI•…è€¡¡…Ñ%èÍÑÉ¥¹œ¤€ôøÙ½¥ì((€€¼¼5ÕÍ¥Œ(€Á±…åQÉ…¬è€¡ÑÉ…¬èQÉ…¬¤€ôøÙ½¥ì(€Ñ½±•A±…äè€ ¤€ôøÙ½¥ì(€¹•áÑQÉ…¬è€ ¤€ôøÙ½¥ì(€ÁÉ•ÙQÉ…¬è€ ¤€ôøÙ½¥ì(€Í•ÑÕÉÉ•¹ÑQ¥µ”è€¡Ñ¥µ”è¹Õµ‰•È¤€ôøÙ½¥ì(€ÕÁ‘…Ñ•AÉ½™¥±”è€¡‘…Ñ„èA…ÉÑ¥…°ñUÍ•Èø¤€ôøÙ½¥ì((€€¼¼$A±…åÉ½Õ¹(€Í•¹‘%5•ÍÍ…”è€¡ÁÉ½µÁĞèÍÑÉ¥¹œ¤€ôøÙ½¥ì(€Í•ÑMåÍÑ•µ%¹ÍÑÉÕÑ¥½¸è€¡¥¹ÍÑÉÕÑ¥½¸èÍÑÉ¥¹œ¤€ôøÙ½¥ì(€É•…Ñ•½¹Ù•ÉÍ…Ñ¥½¸è€¡µ½‘•°èÍÑÉ¥¹œ¤€ôøÙ½¥ì(€Í•Ñ½µÁ…É•5½‘•±Ìè€¡„èÍÑÉ¥¹œ°ˆèÍÑÉ¥¹œ¤€ôøÙ½¥ì(€•¹•É…Ñ•%µ…”è€¡ÁÉ½µÁĞèÍÑÉ¥¹œ¤€ôøÙ½¥ì(€•ÑUÉ±MÕµµ…Éäè€¡ÕÉ°èÍÑÉ¥¹œ¤€ôøÙ½¥ì(€±•…É½¹Ù•ÉÍ…Ñ¥½¸è€ ¤€ôøÙ½¥ì)ô()•áÁ½ÉĞ½¹ÍĞÕÍ•MÑ½É”€ôÉ•…Ñ”ñMÑ½É•MÑ…Ñ”ø ¤ (€Á•ÉÍ¥ÍĞ (€€€€¡Í•Ğ°•Ğ¤€ôø€¡ì(€€€€€€¼¼ÕÑ (€€€€€…ÕÑ¡UÍ•Èè¹Õ±°°(€€€€€Í•ÑÕÑ¡UÍ•Èè€¡ÕÍ•È¤€ôøÍ•Ğ¡ì…ÕÑ¡UÍ•ÈèÕÍ•Èô¤°((€€€€€€¼¼Q¡•µ”(€€€€€Ñ¡•µ•%è€¹•áÕÌœ°(€€€€€½±½É5½‘”è€‘…É¬œ°(€€€€€ÕÍÑ½µA…±•ÑÑ”è¹Õ±°°(€€€€€Í•ÑQ¡•µ•%è€¡¥¤€ôøÍ•Ğ¡ìÑ¡•µ•%è¥ô¤°(€€€€€Í•Ñ½±½É5½‘”è€¡µ½‘”¤€ôøÍ•Ğ¡ì½±½É5½‘”èµ½‘”ô¤°(€€€€€Í•ÑÕÍÑ½µA…±•ÑÑ”è€¡Á…±•ÑÑ”¤€ôøÍ•Ğ¡ìÕÍÑ½µA…±•ÑÑ”èÁ…±•ÑÑ”ô¤°((€€€€€€¼¼M•ÕÉ¥Ñä(€€€€€Í•ÉÙ•É5½‘”è€•¹ÑÉ…±¥é•œ°(€€€€€”É•¹ÉåÁÑ¥½¸èÑÉÕ”°(€€€€€•Á¡•µ•É…±MÑ½É…”è™…±Í”°(€€€€€‰¥½µ•ÑÉ¥¹…‰±•è™…±Í”°(€€€€€Ñİ½…Ñ½É¹…‰±•è™…±Í”°(€€€€€É•…‘I••¥ÁÑÌèÑÉÕ”°(€€€€€½¹±¥¹•MÑ…ÑÕÌèÑÉÕ”°(€€€€€Í•ÑM•ÉÙ•É5½‘”è€¡µ½‘”¤€ôøÍ•Ğ¡ìÍ•ÉÙ•É5½‘”èµ½‘”ô¤°(€€€€€Í•ÑÉ•¹ÉåÁÑ¥½¸è€¡Ø¤€ôøÍ•Ğ¡ì”É•¹ÉåÁÑ¥½¸èØô¤°(€€€€€Í•ÑÁ¡•µ•É…±MÑ½É…”è€¡Ø¤€ôøÍ•Ğ¡ì•Á¡•µ•É…±MÑ½É…”èØô¤°(€€€€€Í•Ñ	¥½µ•ÑÉ¥¹…‰±•è€¡Ø¤€ôøÍ•Ğ¡ì‰¥½µ•ÑÉ¥¹…‰±•èØô¤°(€€€€€Í•ÑQİ½…Ñ½É¹…‰±•è€¡Ø¤€ôøÍ•Ğ¡ìÑİ½…Ñ½É¹…‰±•èØô¤°(€€€€€Í•ÑI•…‘I••¥ÁÑÌè€¡Ø¤€ôøÍ•Ğ¡ìÉ•…‘I••¥ÁÑÌèØô¤°(€€€€€Í•Ñ=¹±¥¹•MÑ…ÑÕÌè€¡Ø¤€ôøÍ•Ğ¡ì½¹±¥¹•MÑ…ÑÕÌèØô¤°((€€€€€€¼¼$A•ÉÍ½¹„(€€€€€…¥A•ÉÍ½¹„è€™É¥•¹‘±äœ°(€€€€€…¥U¥MÑå±”è€ÍÑÕ‘¥¼œ°(€€€€€Í•Ñ¥A•ÉÍ½¹„è€¡À¤€ôøÍ•Ğ¡ì…¥A•ÉÍ½¹„èÀô¤°(€€€€€Í•Ñ¥U¥MÑå±”è€¡Ì¤€ôøÍ•Ğ¡ì…¥U¥MÑå±”èÌô¤°((€€€€€€¼¼Må¹Œ(€€€€€Íå¹¹…‰±•èÑÉÕ”°(€€€€€½™™±¥¹•5½‘”èÑÉÕ”°(€€€€€±½Õ‘	…­ÕÀèÑÉÕ”°(€€€€€‰…­ÕÁ¹ÉåÁÑ¥½¸èÑÉÕ”°(€€€€€Í•ÑMå¹¹…‰±•è€¡Ø¤€ôøÍ•Ğ¡ìÍå¹¹…‰±•èØô¤°(€€€€€Í•Ñ=™™±¥¹•5½‘”è€¡Ø¤€ôøÍ•Ğ¡ì½™™±¥¹•5½‘”èØô¤°(€€€€€Í•Ñ±½Õ‘	…­ÕÀè€¡Ø¤€ôøÍ•Ğ¡ì±½Õ‘	…­ÕÀèØô¤°(€€€€€Í•Ñ	…­ÕÁ¹ÉåÁÑ¥½¸è€¡Ø¤€ôøÍ•Ğ¡ì‰…­ÕÁ¹ÉåÁÑ¥½¸èØô¤°((€€€€€€¼¼áÁ•É¥•¹”(€€€€€¡…ÁÑ¥Í¹…‰±•èÑÉÕ”°(€€€€€Í½Õ¹‘¹…‰±•è™…±Í”°(€€€€€…¹¥µ…Ñ¥½¹Í¹…‰±•èÑÉÕ”°(€€€€€É•‘Õ•‘5½Ñ¥½¸è™…±Í”°(€€€€€‘…Ñ…M…Ù•Èè™…±Í”°(€€€€€Í•Ñ!…ÁÑ¥Í¹…‰±•è€¡Ø¤€ôøìÍ•Ğ¡ì¡…ÁÑ¥Í¹…‰±•èØô¤ìÍ•Ñ!…ÁÑ¥Í¹…‰±•¡Ø¤ìô°(€€€€€Í•ÑM½Õ¹‘¹…‰±•è€¡Ø¤€ôøÍ•Ğ¡ìÍ½Õ¹‘¹…‰±•èØô¤°(€€€€€Í•Ñ¹¥µ…Ñ¥½¹Í¹…‰±•è€¡Ø¤€ôøÍ•Ğ¡ì…¹¥µ…Ñ¥½¹Í¹…‰±•èØô¤°(€€€€€Í•ÑI•‘Õ•‘5½Ñ¥½¸è€¡Ø¤€ôøÍ•Ğ¡ìÉ•‘Õ•‘5½Ñ¥½¸èØô¤°(€€€€€Í•Ñ…Ñ…M…Ù•Èè€¡Ø¤€ôøÍ•Ğ¡ì‘…Ñ…M…Ù•ÈèØô¤°((€€€€€€¼¼M½¥…°(€€€€€ÕÍ•ÈèÍ••‘UÍ•ÉÍlÁt°(€€€€€Á½ÍÑÌèÍ••‘A½ÍÑÌ°(€€€€€ÍÑ½É¥•ÌèÍ••‘MÑ½É¥•Ì°(€€€€€¡…ÑÌèÍ••‘¡…ÑÌ°(€€€€€ÑÉ…­ÌèÍ••‘QÉ…­Ì°(€€€€€ÕÉÉ•¹ÑQÉ…¬è¹Õ±°°(€€€€€¥ÍA±…å¥¹œè™…±Í”°(€€€€€ÕÉÉ•¹ÑQ¥µ”è€À°(€€€€€ÕÉÉ•¹Ñ¡…Ñ%è¹Õ±°°(€€€€€Õ¹É•…‘¡…ÑÌè€Ì°(€€€€€ÍÑ½Éå½±½ÉÌ°((€€€€€€¼¼$(€€€€€…¥5½‘•±Ì°(€€€€€…¥½¹Ù•ÉÍ…Ñ¥½¹Ìèmt°(€€€€€ÕÉÉ•¹Ñ½¹Ù•ÉÍ…Ñ¥½¹%è¹Õ±°°(€€€€€¥ÍMÑÉ•…µ¥¹œè™…±Í”°(€€€€€•¹•É…Ñ•‘%µ…•Ìèmt°(€€€€€ÕÍ…•IÁ´è€À°(€€€€€ÕÍ…•QÁ´è€À°(€€€€€ÕÍ…•IÁè€À°(€€€€€Ñ½Ñ…±Q½­•¹ÍUÍ•è€À°(€€€€€Ñ½Ñ…±ÍÑ¥µ…Ñ•‘½ÍĞè€À°(€€€€€½µÁ…É•5½‘•±è€•µ¥¹¤´È¸ÔµÁÉ¼œ°(€€€€€½µÁ…É•5½‘•±è€•µ¥¹¤´È¸Ôµ™±…Í œ°((€€€€€…‘‘A½ÍĞè€¡½¹Ñ•¹Ğ°¥µ…”¤€ôøì(€€€€€€€½¹ÍĞìÕÍ•Èô€ô•Ğ ¤ì(€€€€€€€½¹ÍĞ¹•İA½ÍĞèA½ÍĞ€ôì¥èÀ‘í…Ñ”¹¹½Ü ¥õ€°ÕÍ•É%è€µ”œ°ÕÍ•É9…µ”èÕÍ•È¹¹…µ”°ÕÍ•ÉÙ…Ñ…ÈèÕÍ•È¹…Ù…Ñ…È°½¹Ñ•¹Ğ°¥µ…”°Ñ¥µ•ÍÑ…µÀè…Ñ”¹¹½Ü ¤°±¥­•Ìè€À°±¥­•è™…±Í”°½µµ•¹ÑÌèmtôì(€€€€€€€Í•Ğ ¡Ì¤€ôø€¡ìÁ½ÍÑÌèm¹•İA½ÍĞ°€¸¸¹Ì¹Á½ÍÑÍtô¤¤ì(€€€€€ô°(€€€€€Ñ½±•1¥­”è€¡Á½ÍÑ%¤€ôøì(€€€€€€€Í•Ğ ¡Ì¤€ôø€¡ìÁ½ÍÑÌèÌ¹Á½ÍÑÌ¹µ…À ¡À¤€ôøÀ¹¥€ôôôÁ½ÍÑ%€üì€¸¸¹À°±¥­•è€…À¹±¥­•°±¥­•ÌèÀ¹±¥­•€üÀ¹±¥­•Ì€´€Ä€èÀ¹±¥­•Ì€¬€Äô€èÀ¤ô¤¤ì(€€€€€ô°(€€€€€…‘‘½µµ•¹Ğè€¡Á½ÍÑ%°½¹Ñ•¹Ğ¤€ôøì(€€€€€€€½¹ÍĞìÕÍ•Èô€ô•Ğ ¤ì(€€€€€€€Í•Ğ ¡Ì¤€ôø€¡ìÁ½ÍÑÌèÌ¹Á½ÍÑÌ¹µ…À ¡À¤€ôøÀ¹¥€ôôôÁ½ÍÑ%€üì€¸¸¹À°½µµ•¹ÑÌèl¸¸¹À¹½µµ•¹ÑÌ°ì¥èŒ‘í…Ñ”¹¹½Ü ¥õ€°ÕÍ•É9…µ”èÕÍ•È¹¹…µ”°ÕÍ•ÉÙ…Ñ…ÈèÕÍ•È¹…Ù…Ñ…È°½¹Ñ•¹Ğ°Ñ¥µ•ÍÑ…µÀè…Ñ”¹¹½Ü ¤õtô€èÀ¤ô¤¤ì(€€€€€ô°(€€€€€…‘‘MÑ½Éäè€¡½¹Ñ•¹Ğ°‰½±½È¤€ôøì(€€€€€€€½¹ÍĞìÕÍ•Èô€ô•Ğ ¤ì(€€€€€€€½¹ÍĞ¹•İMÑ½ÉäèMÑ½Éä€ôì¥èÌ‘í…Ñ”¹¹½Ü ¥õ€°ÕÍ•É%è€µ”œ°ÕÍ•É9…µ”èÕÍ•È¹¹…µ”°ÕÍ•ÉÙ…Ñ…ÈèÕÍ•È¹…Ù…Ñ…È°½¹Ñ•¹Ğ°‰½±½È°Ñ¥µ•ÍÑ…µÀè…Ñ”¹¹½Ü ¤°Ù¥•İ•è™…±Í”ôì(€€€€€€€Í•Ğ ¡Ì¤€ôø€¡ìÍÑ½É¥•Ìèm¹•İMÑ½Éä°€¸¸¹Ì¹ÍÑ½É¥•Ítô¤¤ì(€€€€€ô°(€€€€€µ…É­MÑ½ÉåY¥•İ•è€¡ÍÑ½Éå%¤€ôøì(€€€€€€€Í•Ğ ¡Ì¤€ôø€¡ìÍÑ½É¥•ÌèÌ¹ÍÑ½É¥•Ì¹µ…À ¡ÍĞ¤€ôøÍĞ¹¥€ôôôÍÑ½Éå%€üì€¸¸¹ÍĞ°Ù¥•İ•èÑÉÕ”ô€èÍĞ¤ô¤¤ì(€€€€€ô°(€€€€€Í•¹‘5•ÍÍ…”è€¡¡…Ñ%°½¹Ñ•¹Ğ¤€ôøì(€€€€€€€½¹ÍĞµÍœè5•ÍÍ…”€ôì¥è´‘í…Ñ”¹¹½Ü ¥õ€°Í•¹‘•É%è€µ”œ°½¹Ñ•¹Ğ°Ñ¥µ•ÍÑ…µÀè…Ñ”¹¹½Ü ¤°ÑåÁ”è€Ñ•áĞœ°•¹ÉåÁÑ•è•Ğ ¤¹”É•¹ÉåÁÑ¥½¸ôì(€€€€€€€Í•Ğ ¡Ì¤€ôø€¡ì¡…ÑÌèÌ¹¡…ÑÌ¹µ…À ¡Œ¤€ôøŒ¹¥€ôôô¡…Ñ%€üì€¸¸¹Œ°µ•ÍÍ…•Ìèl¸¸¹Œ¹µ•ÍÍ…•Ì°µÍt°±…ÍÑ5•ÍÍ…”è½¹Ñ•¹Ğ°±…ÍÑ5•ÍÍ…•Q¥µ”èµÍœ¹Ñ¥µ•ÍÑ…µÀô€èŒ¤ô¤¤ì(€€€€€€€Í•ÑQ¥µ•½ÕĞ  ¤€ôøì(€€€€€€€€€½¹ÍĞÉ•Á±ä€ô…ÕÑ½I•Á±¥•Ím5…Ñ ¹™±½½È¡5…Ñ ¹É…¹‘½´ ¤€¨…ÕÑ½I•Á±¥•Ì¹±•¹Ñ ¥tì(€€€€€€€€€½¹ÍĞÉ•Á±å5Íœè5•ÍÍ…”€ôì¥è´‘í…Ñ”¹¹½Ü ¤€¬€Åõ€°Í•¹‘•É%è•Ğ ¤¹¡…ÑÌ¹™¥¹ ¡Œ¤€ôøŒ¹¥€ôôô¡…Ñ%¤ü¹½¹Ñ…Ñ%€üü€ÔÈœ°½¹Ñ•¹ĞèÉ•Á±ä°Ñ¥µ•ÍÑ…µÀè…Ñ”¹¹½Ü ¤°ÑåÁ”è€Ñ•áĞœ°•¹ÉåÁÑ•è•Ğ ¤¹”É•¹ÉåÁÑ¥½¸ôì(€€€€€€€€€Í•Ğ ¡Ì¤€ôø€¡ì¡…ÑÌèÌ¹¡…ÑÌ¹µ…À ¡Œ¤€ôøŒ¹¥€ôôô¡…Ñ%€üì€¸¸¹Œ°µ•ÍÍ…•Ìèl¸¸¹Œ¹µ•ÍÍ…•Ì°É•Á±å5Ít°±…ÍÑ5•ÍÍ…”èÉ•Á±ä°±…ÍÑ5•ÍÍ…•Q¥µ”èÉ•Á±å5Íœ¹Ñ¥µ•ÍÑ…µÀô€èŒ¤ô¤¤ì(€€€€€€€ô°€ÄÔÀÀ€¬5…Ñ ¹É…¹‘½´ ¤€¨€ÈÀÀÀ¤ì(€€€€€ô°(€€€€€½Á•¹¡…Ğè€¡¡…Ñ%¤€ôøìÍ•Ğ¡ìÕÉÉ•¹Ñ¡…Ñ%è¡…Ñ%ô¤ì•Ğ ¤¹µ…É­¡…ÑI•…¡¡…Ñ%¤ìô°(€€€€€µ…É­¡…ÑI•…è€¡¡…Ñ%¤€ôøì(€€€€€€€Í•Ğ ¡Ì¤€ôøì(€€€€€€€€€½¹ÍĞ¡…ÑÌ€ôÌ¹¡…ÑÌ¹µ…À ¡Œ¤€ôøŒ¹¥€ôôô¡…Ñ%€üì€¸¸¹Œ°Õ¹É•…è€Àô€èŒ¤ì(€€€€€€€€€É•ÑÕÉ¸ì¡…ÑÌ°Õ¹É•…‘¡…ÑÌè¡…ÑÌ¹É•‘Õ” ¡ÍÕ´°Œ¤€ôøÍÕ´€¬Œ¹Õ¹É•…°€À¤ôì(€€€€€€€ô¤ì(€€€€€ô°(€€€€€Á±…åQÉ…¬è€¡ÑÉ…¬¤€ôøìÍ•Ğ¡ìÕÉÉ•¹ÑQÉ…¬èÑÉ…¬°¥ÍA±…å¥¹œèÑÉÕ”°ÕÉÉ•¹ÑQ¥µ”è€Àô¤ìô°(€€€€€Ñ½±•A±…äè€ ¤€ôøìÍ•Ğ ¡Ì¤€ôø€¡ì¥ÍA±…å¥¹œè€…Ì¹¥ÍA±…å¥¹œô¤¤ìô°(€€€€€¹•áÑQÉ…¬è€ ¤€ôøì(€€€€€€€½¹ÍĞìÑÉ…­Ì°ÕÉÉ•¹ÑQÉ…¬ô€ô•Ğ ¤ì(€€€€€€€¥˜€ …ÕÉÉ•¹ÑQÉ…¬¤É•ÑÕÉ¸ì(€€€€€€€½¹ÍĞ¥‘à€ôÑÉ…­Ì¹™¥¹‘%¹‘•à ¡Ğ¤€ôøĞ¹¥€ôôôÕÉÉ•¹ÑQÉ…¬¹¥¤ì(€€€€€€€Í•Ğ¡ìÕÉÉ•¹ÑQÉ…¬èÑÉ…­Íl¡¥‘à€¬€Ä¤€”ÑÉ…­Ì¹±•¹Ñ¡t°ÕÉÉ•¹ÑQ¥µ”è€À°¥ÍA±…å¥¹œèÑÉÕ”ô¤ì(€€€€€ô°(€€€€€ÁÉ•ÙQÉ…¬è€ ¤€ôøì(€€€€€€€½¹ÍĞìÑÉ…­Ì°ÕÉÉ•¹ÑQÉ…¬ô€ô•Ğ ¤ì(€€€€€€€¥˜€ …ÕÉÉ•¹ÑQÉ…¬¤É•ÑÕÉ¸ì(€€€€€€€½¹ÍĞ¥‘à€ôÑÉ…­Ì¹™¥¹‘%¹‘•à ¡Ğ¤€ôøĞ¹¥€ôôôÕÉÉ•¹ÑQÉ…¬¹¥¤ì(€€€€€€€Í•Ğ¡ìÕÉÉ•¹ÑQÉ…¬èÑÉ…­Íl¡¥‘à€´€Ä€¬ÑÉ…­Ì¹±•¹Ñ ¤€”ÑÉ…­Ì¹±•¹Ñ¡t°ÕÉÉ•¹ÑQ¥µ”è€À°¥ÍA±…å¥¹œèÑÉÕ”ô¤ì(€€€€€ô°(€€€€€Í•ÑÕÉÉ•¹ÑQ¥µ”è€¡Ñ¥µ”¤€ôøÍ•Ğ¡ìÕÉÉ•¹ÑQ¥µ”èÑ¥µ”ô¤°(€€€€€ÕÁ‘…Ñ•AÉ½™¥±”è€¡‘…Ñ„¤€ôøÍ•Ğ ¡Ì¤€ôø€¡ìÕÍ•Èèì€¸¸¹Ì¹ÕÍ•È°€¸¸¹‘…Ñ„ôô¤¤°((€€€€€É•…Ñ•½¹Ù•ÉÍ…Ñ¥½¸è€¡µ½‘•°¤€ôøì(€€€€€€€½¹ÍĞ½¹Øè%½¹Ù•ÉÍ…Ñ¥½¸€ôì¥è½¹Ø´‘í…Ñ”¹¹½Ü ¥õ€°Ñ¥Ñ±”è€9•Ü½¹Ù•ÉÍ…Ñ¥½¸œ°µ½‘•°°ÍåÍÑ•µ%¹ÍÑÉÕÑ¥½¸è€œœ°µ•ÍÍ…•Ìèmt°É•…Ñ•‘Ğè…Ñ”¹¹½Ü ¤ôì(€€€€€€€Í•Ğ ¡Ì¤€ôø€¡ì…¥½¹Ù•ÉÍ…Ñ¥½¹Ìèm½¹Ø°€¸¸¹Ì¹…¥½¹Ù•ÉÍ…Ñ¥½¹Ít°ÕÉÉ•¹Ñ½¹Ù•ÉÍ…Ñ¥½¹%è½¹Ø¹¥ô¤¤ì(€€€€€ô°(€€€€€Í•ÑMåÍÑ•µ%¹ÍÑÉÕÑ¥½¸è€¡¥¹ÍÑÉÕÑ¥½¸¤€ôøì(€€€€€€€½¹ÍĞìÕÉÉ•¹Ñ½¹Ù•ÉÍ…Ñ¥½¹%°…¥½¹Ù•ÉÍ…Ñ¥½¹Ìô€ô•Ğ ¤ì(€€€€€€€¥˜€ …ÕÉÉ•¹Ñ½¹Ù•ÉÍ…Ñ¥½¹%¤É•ÑÕÉ¸ì(€€€€€€€Í•Ğ¡ì…¥½¹Ù•ÉÍ…Ñ¥½¹Ìè…¥½¹Ù•ÉÍ…Ñ¥½¹Ì¹µ…À ¡Œ¤€ôøŒ¹¥€ôôôÕÉÉ•¹Ñ½¹Ù•ÉÍ…Ñ¥½¹%€üì€¸¸¹Œ°ÍåÍÑ•µ%¹ÍÑÉÕÑ¥½¸è¥¹ÍÑÉÕÑ¥½¸ô€èŒ¤ô¤ì(€€€€€ô°(€€€€€Í•¹‘…%5•ÍÍ…”è€¡ÁÉ½µÁĞ¤€ôøì(€€€€€€€½¹ÍĞìÕÉÉ•¹Ñ½¹Ù•ÉÍ…Ñ¥½¹%°…¥½¹Ù•ÉÍ…Ñ¥½¹Ì°…¥5½‘•±Ì°…¥A•ÉÍ½¹„°Ñ½Ñ…±Q½­•¹ÍUÍ•°Ñ½Ñ…±ÍÑ¥µ…Ñ•‘½ÍĞô€ô•Ğ ¤ì(€€€€€€€¥˜€ …ÕÉÉ•¹Ñ½¹Ù•ÉÍ…Ñ¥½¹%¤É•ÑÕÉ¸ì(€€€€€€€½¹ÍĞ½¹Ø€ô…¥½¹Ù•ÉÍ…Ñ¥½¹Ì¹™¥¹ ¡Œ¤€ôøŒ¹¥€ôôôÕÉÉ•¹Ñ½¹Ù•ÉÍ…Ñ¥½¹%¤ì(€€€€€€€¥˜€ …½¹Ø¤É•ÑÕÉ¸ì(€€€€€€€½¹ÍĞÕÍ•É5Íœè%5•ÍÍ…”€ôì¥è…¤´‘í…Ñ”¹¹½Ü ¥õ€°É½±”è€ÕÍ•Èœ°½¹Ñ•¹ĞèÁÉ½µÁĞ°Ñ¥µ•ÍÑ…µÀè…Ñ”¹¹½Ü ¤ôì(€€€€€€€½¹ÍĞ¥¹ÁÕÑQ½­•¹Ì€ô•ÍÑ¥µ…Ñ•Q½­•¹Ì¡ÁÉ½µÁĞ¤ì(€€€€€€€Í•Ğ ¡Ì¤€ôø€¡ì…¥½¹Ù•ÉÍ…Ñ¥½¹ÌèÌ¹…¥½¹Ù•ÉÍ…Ñ¥½¹Ì¹µ…À ¡Œ¤€ôøŒ¹¥€ôôôÕÉÉ•¹Ñ½¹Ù•ÉÍ…Ñ¥½¹%€üì€¸¸¹Œ°µ•ÍÍ…•Ìèl¸¸¹Œ¹µ•ÍÍ…•Ì°ÕÍ•É5Ít°Ñ¥Ñ±”èŒ¹µ•ÍÍ…•Ì¹±•¹Ñ €ôôô€À€üÁÉ½µÁĞ¹Í±¥” À°€ĞÀ¤€èŒ¹Ñ¥Ñ±”ô€èŒ¤°¥ÍMÑÉ•…µ¥¹œèÑÉÕ”ô¤¤ì(€€€€€€€½¹ÍĞ™Õ±±I•ÍÁ½¹Í”€ô•¹•É…Ñ•%I•ÍÁ½¹Í”¡ÁÉ½µÁĞ°½¹Ø¹µ½‘•°°½¹Ø¹ÍåÍÑ•µ%¹ÍÑÉÕÑ¥½¸°…¥A•ÉÍ½¹„¤ì(€€€€€€€½¹ÍĞ½ÕÑÁÕÑQ½­•¹Ì€ô•ÍÑ¥µ…Ñ•Q½­•¹Ì¡™Õ±±I•ÍÁ½¹Í”¤ì(€€€€€€€½¹ÍĞ±…Ñ•¹ä€ô•ÍÑ¥µ…Ñ•1…Ñ•¹ä¡½¹Ø¹µ½‘•°°½ÕÑÁÕÑQ½­•¹Ì¤ì(€€€€€€€½¹ÍĞµ½‘•°€ô…¥5½‘•±Ì¹™¥¹ ¡´¤€ôø´¹¥€ôôô½¹Ø¹µ½‘•°¤ì(€€€€€€€½¹ÍĞ½ÍĞ€ôµ½‘•°€ü€¡¥¹ÁÕÑQ½­•¹Ì€¼€ÄÀÀÀÀÀÀ¤€¨µ½‘•°¹¥¹ÁÕÑ½ÍĞ€¬€¡½ÕÑÁÕÑQ½­•¹Ì€¼€ÄÀÀÀÀÀÀ¤€¨µ½‘•°¹½ÕÑÁÕÑ½ÍĞ€è€Àì(€€€€€€€Í•ÑQ¥µ•½ÕĞ  ¤€ôøì(€€€€€€€€€½¹ÍĞ…¥5Íœè%5•ÍÍ…”€ôì¥è…¤´‘í…Ñ”¹¹½Ü ¤€¬€Åõ€°É½±”è€µ½‘•°œ°½¹Ñ•¹Ğè™Õ±±I•ÍÁ½¹Í”°µ½‘•°è½¹Ø¹µ½‘•°°Ñ¥µ•ÍÑ…µÀè…Ñ”¹¹½Ü ¤°Ñ½­•¹Ìè¥¹ÁÕÑQ½­•¹Ì€¬½ÕÑÁÕÑQ½­•¹Ì°±…Ñ•¹äôì(€€€€€€€€€Í•Ğ ¡Ì¤€ôø€¡ì¥ÍMÑÉ•…µ¥¹œè™…±Í”°…¥½¹Ù•ÉÍ…Ñ¥½¹ÌèÌ¹…¥½¹Ù•ÉÍ…Ñ¥½¹Ì¹µ…À ¡Œ¤€ôøŒ¹¥€ôôôÕÉÉ•¹Ñ½¹Ù•ÉÍ…Ñ¥½¹%€üì€¸¸¹Œ°µ•ÍÍ…•Ìèl¸¸¹Œ¹µ•ÍÍ…•Ì°…¥5Ítô€èŒ¤°ÕÍ…•IÁ´è5…Ñ ¹µ¥¸¡Ì¹ÕÍ…•IÁ´€¬€Ä°µ½‘•°ü¹ÉÁ´ñğ€ÄÀÀÀ¤°ÕÍ…•QÁ´è5…Ñ ¹µ¥¸¡Ì¹ÕÍ…•QÁ´€¬¥¹ÁÕÑQ½­•¹Ì€¬½ÕÑÁÕÑQ½­•¹Ì°µ½‘•°ü¹ÑÁ´ñğ€ÄÀÀÀÀÀÀ¤°ÕÍ…•IÁè5…Ñ ¹µ¥¸¡Ì¹ÕÍ…•IÁ€¬€Ä°µ½‘•°ü¹ÉÁñğ€ÄÀÀÀ¤°Ñ½Ñ…±Q½­•¹ÍUÍ•èÌ¹Ñ½Ñ…±Q½­•¹ÍUÍ•€¬¥¹ÁÕÑQ½­•¹Ì€¬½ÕÑÁÕÑQ½­•¹Ì°Ñ½Ñ…±ÍÑ¥µ…Ñ•‘½ÍĞèÌ¹Ñ½Ñ…±ÍÑ¥µ…Ñ•‘½ÍĞ€¬½ÍĞô¤¤ì(€€€€€€€ô°±…Ñ•¹ä¤ì(€€€€€ô°(€€€€€Í•Ñ½µÁ…É•5½‘•±Ìè€¡„°ˆ¤€ôøÍ•Ğ¡ì½µÁ…É•5½‘•±è„°½µÁ…É•5½‘•±èˆô¤°(€€€€€•¹•É…Ñ•%µ…”è€¡ÁÉ½µÁĞ¤€ôøì(€€€€€€€½¹ÍĞ¥µœè•¹•É…Ñ•‘%µ…”€ôì¥è¥µœ´‘í…Ñ”¹¹½Ü ¥õ€°ÁÉ½µÁĞ°µ½‘•°è€¹…¹¼µ‰…¹…¹„œ°É…‘¥•¹Ğè¥µ…•É…‘¥•¹ÑÍm5…Ñ ¹™±½½È¡5…Ñ ¹É…¹‘½´ ¤€¨¥µ…•É…‘¥•¹ÑÌ¹±•¹Ñ ¥t°•µ½©¤è¥µ…•µ½©¥Ím5…Ñ ¹™±½½È¡5…Ñ ¹É…¹‘½´ ¤€¨¥µ…•µ½©¥Ì¹±•¹Ñ ¥t°Ñ¥µ•ÍÑ…µÀè…Ñ”¹¹½Ü ¤ôì(€€€€€€€Í•Ğ ¡Ì¤€ôø€¡ì•¹•É…Ñ•‘%µ…•Ìèm¥µœ°€¸¸¹Ì¹•¹•É…Ñ•‘%µ…•Ítô¤¤ì(€€€€€ô°(€€€€€•ÑUÉ±MÕµµ…Éäè€¡ÕÉ°¤€ôøì(€€€€€€€½¹ÍĞÍÕµµ…Éå5Íœè%5•ÍÍ…”€ôì¥è…¤µÕÉ°´‘í…Ñ”¹¹½Ü ¥õ€°É½±”è€µ½‘•°œ°½¹Ñ•¹Ğè$Ù”É•ÑÉ¥•Ù•…¹…¹…±åé•Ñ¡”½¹Ñ•¹Ğ™É½´€‘íÕÉ±ô¹q¹q¸¨©MÕµµ…Éäè¨©q»ŠˆQ¡”Á…”…ÁÁ•…ÉÌÑ¼‰”„İ•ˆÉ•Í½ÕÉ”İ¥Ñ É•±•Ù…¹Ğ½¹Ñ•¹Ñq»Šˆ-•äÑ½Á¥Ì¥¹±Õ‘”Ñ¡”µ…¥¸ÍÕ‰©•Ğµ…ÑÑ•Éq»ŠˆQ¡”½¹Ñ•¹Ğ¥ÌÍÑÉÕÑÕÉ•™½ÈÉ•…‘…‰¥±¥Ñåq¹q¸©9½Ñ”è%¸ÁÉ½‘ÕÑ¥½¸°Ñ¡¥Ìİ½Õ±ÕÍ”Ñ¡”UI0½¹Ñ•áĞÑ½½°Ñ¼™•Ñ É•…°½¹Ñ•¹Ğ¸©€°µ½‘•°è€•µ¥¹¤´È¸Ôµ™±…Í œ°Ñ¥µ•ÍÑ…µÀè…Ñ”¹¹½Ü ¤°Ñ½­•¹Ìè€ÄÔÀ°±…Ñ•¹äè€ÄÈÀÀôì(€€€€€€€½¹ÍĞìÕÉÉ•¹Ñ½¹Ù•ÉÍ…Ñ¥½¹%ô€ô•Ğ ¤ì(€€€€€€€¥˜€ …ÕÉÉ•¹Ñ½¹Ù•ÉÍ…Ñ¥½¹%¤É•ÑÕÉ¸ì(€€€€€€€Í•Ğ ¡Ì¤€ôø€¡ì…¥½¹Ù•ÉÍ…Ñ¥½¹ÌèÌ¹…¥½¹Ù•ÉÍ…Ñ¥½¹Ì¹µ…À ¡Œ¤€ôøŒ¹¥€ôôôÕÉÉ•¹Ñ½¹Ù•ÉÍ…Ñ¥½¹%€üì€¸¸¹Œ°µ•ÍÍ…•Ìèl¸¸¹Œ¹µ•ÍÍ…•Ì°ÍÕµµ…Éå5Ítô€èŒ¤°ÕÍ…•IÁ´èÌ¹ÕÍ…•IÁ´€¬€Ä°Ñ½Ñ…±Q½­•¹ÍUÍ•èÌ¹Ñ½Ñ…±Q½­•¹ÍUÍ•€¬€ÄÔÀô¤¤ì(€€€€€ô°(€€€€€±•…É½¹Ù•ÉÍ…Ñ¥½¸è€ ¤€ôøì(€€€€€€€½¹ÍĞìÕÉÉ•¹Ñ½¹Ù•ÉÍ…Ñ¥½¹%ô€ô•Ğ ¤ì(€€€€€€€¥˜€ …ÕÉÉ•¹Ñ½¹Ù•ÉÍ…Ñ¥½¹%¤É•ÑÕÉ¸ì(€€€€€€€Í•Ğ ¡Ì¤€ôø€¡ì…¥½¹Ù•ÉÍ…Ñ¥½¹ÌèÌ¹…¥½¹Ù•ÉÍ…Ñ¥½¹Ì¹µ…À ¡Œ¤€ôøŒ¹¥€ôôôÕÉÉ•¹Ñ½¹Ù•ÉÍ…Ñ¥½¹%€üì€¸¸¹Œ°µ•ÍÍ…•Ìèmtô€èŒ¤ô¤¤ì(€€€€€ô°(€€€ô¤°(€€€ì(€€€€€¹…µ”è€¹•áÕÌµÍÑ½É…”œ°(€€€€€Á…ÉÑ¥…±¥é”è€¡Ì¤€ôø€¡ì(€€€€€€€ÕÍ•ÈèÌ¹ÕÍ•È°Á½ÍÑÌèÌ¹Á½ÍÑÌ°ÍÑ½É¥•ÌèÌ¹ÍÑ½É¥•Ì°¡…ÑÌèÌ¹¡…ÑÌ°(€€€€€€€•¹•É…Ñ•‘%µ…•ÌèÌ¹•¹•É…Ñ•‘%µ…•Ì°…¥½¹Ù•ÉÍ…Ñ¥½¹ÌèÌ¹…¥½¹Ù•ÉÍ…Ñ¥½¹Ì°(€€€€€€€Ñ½Ñ…±Q½­•¹ÍUÍ•èÌ¹Ñ½Ñ…±Q½­•¹ÍUÍ•°Ñ½Ñ…±ÍÑ¥µ…Ñ•‘½ÍĞèÌ¹Ñ½Ñ…±ÍÑ¥µ…Ñ•‘½ÍĞ°(€€€€€€€Ñ¡•µ•%èÌ¹Ñ¡•µ•%°½±½É5½‘”èÌ¹½±½É5½‘”°ÕÍÑ½µA…±•ÑÑ”èÌ¹ÕÍÑ½µA…±•ÑÑ”°(€€€€€€€Í•ÉÙ•É5½‘”èÌ¹Í•ÉÙ•É5½‘”°”É•¹ÉåÁÑ¥½¸èÌ¹”É•¹ÉåÁÑ¥½¸°•Á¡•µ•É…±MÑ½É…”èÌ¹•Á¡•µ•É…±MÑ½É…”°(€€€€€€€‰¥½µ•ÑÉ¥¹…‰±•èÌ¹‰¥½µ•ÑÉ¥¹…‰±•°Ñİ½…Ñ½É¹…‰±•èÌ¹Ñİ½…Ñ½É¹…‰±•°(€€€€€€€É•…‘I••¥ÁÑÌèÌ¹É•…‘I••¥ÁÑÌ°½¹±¥¹•MÑ…ÑÕÌèÌ¹½¹±¥¹•MÑ…ÑÕÌ°(€€€€€€€…¥A•ÉÍ½¹„èÌ¹…¥A•ÉÍ½¹„°…¥U¥MÑå±”èÌ¹…¥U¥MÑå±”°(€€€€€€€Íå¹¹…‰±•èÌ¹Íå¹¹…‰±•°½™™±¥¹•5½‘”èÌ¹½™™±¥¹•5½‘”°(€€€€€€€±½Õ‘	…­ÕÀèÌ¹±½Õ‘	…­ÕÀ°‰…­ÕÁ¹ÉåÁÑ¥½¸èÌ¹‰…­ÕÁ¹ÉåÁÑ¥½¸°(€€€€€€€¡…ÁÑ¥Í¹…‰±•èÌ¹¡…ÁÑ¥Í¹…‰±•°Í½Õ¹‘¹…‰±•èÌ¹Í½Õ¹‘¹…‰±•°(€€€€€€€…¹¥µ…Ñ¥½¹Í¹…‰±•èÌ¹¥¹¥µ…Ñ¥½¹Í¹…‰±•°É•‘Õ•‘5½Ñ¥½¸èÌ¹É•‘Õ•‘5½Ñ¥½¸°‘…Ñ…M…Ù•ÈèÌ¹‘…Ñ…M…Ù•È°(€€€€€€€…ÕÑ¡UÍ•ÈèÌ¹…ÕÑ¡UÍ•È°(€€€€€ô¤°(€€€ô(€€¤(¤ì(
