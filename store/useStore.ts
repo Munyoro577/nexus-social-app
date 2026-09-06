@@ -74,6 +74,48 @@ export interface Track {
   cover: string;
 }
 
+export interface AIModel {
+  id: string;
+  name: string;
+  description: string;
+  contextWindow: number;
+  inputCost: number;
+  outputCost: number;
+  rpm: number;
+  tpm: number;
+  rpd: number;
+  badge: string;
+  color: string;
+}
+
+export interface AIMessage {
+  id: string;
+  role: 'user' | 'model' | 'system';
+  content: string;
+  model?: string;
+  timestamp: number;
+  tokens?: number;
+  latency?: number;
+}
+
+export interface AIConversation {
+  id: string;
+  title: string;
+  model: string;
+  systemInstruction: string;
+  messages: AIMessage[];
+  createdAt: number;
+}
+
+export interface GeneratedImage {
+  id: string;
+  prompt: string;
+  model: string;
+  gradient: string;
+  emoji: string;
+  timestamp: number;
+}
+
 const seedUsers: User[] = [
   { id: 'u1', name: 'You', username: '@you', avatar: '🧑', bio: 'Living life one post at a time ✨', followers: 1248, following: 392, posts: 47 },
 ];
@@ -190,6 +232,70 @@ const autoReplies = [
   'Sounds good to me!',
 ];
 
+// ─── AI Models ─────────────────────────────────────────
+const aiModels: AIModel[] = [
+  { id: 'gemini-3', name: 'Gemini 3 Pro', description: 'Most capable model for complex reasoning', contextWindow: 2000000, inputCost: 1.25, outputCost: 5.0, rpm: 1000, tpm: 1000000, rpd: 1000, badge: 'Preview', color: '#4285f4' },
+  { id: 'gemini-2.5-pro', name: 'Gemini 2.5 Pro', description: 'Best for coding and long-context tasks', contextWindow: 1000000, inputCost: 1.25, outputCost: 5.0, rpm: 1000, tpm: 1000000, rpd: 1000, badge: 'Stable', color: '#6366f1' },
+  { id: 'gemini-2.5-flash', name: 'Gemini 2.5 Flash', description: 'Fast and cost-efficient for high-volume', contextWindow: 1000000, inputCost: 0.075, outputCost: 0.3, rpm: 4000, tpm: 2000000, rpd: 2000, badge: 'Stable', color: '#8b5cf6' },
+  { id: 'gemini-2.5-flash-lite', name: 'Gemini 2.5 Flash-Lite', description: 'Lowest latency, lowest cost', contextWindow: 1000000, inputCost: 0.0375, outputCost: 0.15, rpm: 4000, tpm: 4000000, rpd: 6000, badge: 'Stable', color: '#ec4899' },
+  { id: 'nano-banana', name: 'Nano Banana', description: 'High-quality image generation', contextWindow: 480000, inputCost: 0.35, outputCost: 0.0, rpm: 200, tpm: 0, rpd: 200, badge: 'Preview', color: '#f59e0b' },
+  { id: 'veo', name: 'Veo 3.1', description: 'High-fidelity video generation', contextWindow: 0, inputCost: 0.35, outputCost: 0.0, rpm: 100, tpm: 0, rpd: 100, badge: 'Preview', color: '#10b981' },
+];
+
+// Simulated AI response generator
+function generateAIResponse(prompt: string, modelId: string, systemInstruction: string): string {
+  const p = prompt.toLowerCase();
+  const modelPrefix = modelId.includes('flash-lite') ? '[Fast response] ' : modelId.includes('flash') ? '[Quick analysis] ' : modelId.includes('nano') ? '[Image model] ' : modelId.includes('veo') ? '[Video model] ' : '';
+
+  let response = '';
+
+  if (p.includes('hello') || p.includes('hi ') || p === 'hi') {
+    response = `Hello! I'm ${aiModels.find(m => m.id === modelId)?.name || 'Gemini'}. `;
+    if (systemInstruction) response += `I'm operating with your custom instructions in mind. `;
+    response += `How can I help you today? I can assist with writing, analysis, coding, math, creative tasks, and more.`;
+  } else if (p.includes('code') || p.includes('function') || p.includes('program')) {
+    response = `Here's an approach I'd suggest:\n\n\`\`\`javascript\nfunction example(input) {\n  // Process the input with validation\n  if (!input) return null;\n  const result = input.map(item => ({\n    ...item,\n    processed: true,\n    timestamp: Date.now()\n  }));\n  return result.filter(r => r.valid !== false);\n}\n\`\`\`\n\nThis handles edge cases, preserves data integrity, and runs in O(n) time. Want me to adapt it for a specific use case?`;
+  } else if (p.includes('image') || p.includes('generate') || p.includes('draw') || p.includes('picture')) {
+    response = `I can help with image generation! In a production environment, I'd send your prompt to the image model and return a generated image. Here's what I'd create based on "${prompt.slice(0, 80)}":\n\n🎨 A visually stunning composition with vibrant colors, dynamic lighting, and intricate details that capture the essence of your request. The image would feature a harmonious blend of foreground and background elements, creating depth and visual interest.`;
+  } else if (p.includes('summarize') || p.includes('summary')) {
+    response = `Here's a concise summary:\n\n• **Key Point 1**: The main idea centers around the core theme\n• **Key Point 2**: Supporting details provide context and depth\n• **Key Point 3**: The conclusion ties everything together\n\nThis captures the essential information while maintaining clarity. Would you like me to expand on any of these points?`;
+  } else if (p.includes('write') || p.includes('story') || p.includes('poem')) {
+    response = `Here's a creative response:\n\nIn the quiet hum of morning light,\nwhere coffee steam meets dawn's first breath,\na story waits within the glow —\nnot yet told, but felt.\n\nEach word a brushstroke on the page,\neach line a path through unmarked snow.\nThe pen moves forward, trusting ink\nto find what hearts already know.`;
+  } else if (p.includes('explain') || p.includes('what is') || p.includes('how does')) {
+    response = `Great question! Let me break this down:\n\n**Overview**: The concept you're asking about involves several interconnected parts that work together to produce the outcome you described.\n\n**How it works**: Think of it like a well-organized system — each component has a specific role, and they communicate through defined interfaces. The process typically follows: input → processing → output, with feedback loops that adjust behavior.\n\n**Why it matters**: Understanding this gives you a mental model to reason about similar systems and make informed decisions.`;
+  } else if (p.includes('url') || p.includes('http') || p.includes('link')) {
+    response = `I'd fetch the content from that URL, extract the key information, and provide a structured summary. In production, I'd use the URL Context tool to:\n\n1. Retrieve the page content\n2. Extract and clean the text\n3. Identify key topics and entities\n4. Summarize in your preferred format\n\nThis is particularly useful for fact-checking, research, and comparison tasks.`;
+  } else {
+    response = `I've processed your prompt: "${prompt.slice(0, 100)}"\n\nBased on my analysis, here's what I can tell you:\n\nThis is a simulated response from ${aiModels.find(m => m.id === modelId)?.name || 'Gemini'}. In a production environment, I'd connect to the actual Gemini API and provide a detailed, accurate response with real reasoning. The response quality and latency would vary based on the selected model.\n\nWould you like me to elaborate on any aspect of this?`;
+  }
+
+  return modelPrefix + response;
+}
+
+function estimateTokens(text: string): number {
+  return Math.ceil(text.length / 4);
+}
+
+function estimateLatency(modelId: string, tokens: number): number {
+  if (modelId.includes('flash-lite')) return 200 + Math.random() * 300;
+  if (modelId.includes('flash')) return 400 + Math.random() * 500;
+  if (modelId.includes('nano') || modelId.includes('veo')) return 3000 + Math.random() * 2000;
+  return 800 + Math.random() * 1200;
+}
+
+const imageGradients = [
+  'linear-gradient(135deg, #667eea, #764ba2)',
+  'linear-gradient(135deg, #f093fb, #f5576c)',
+  'linear-gradient(135deg, #4facfe, #00f2fe)',
+  'linear-gradient(135deg, #43e97b, #38f9d7)',
+  'linear-gradient(135deg, #fa709a, #fee140)',
+  'linear-gradient(135deg, #30cfd0, #330867)',
+  'linear-gradient(135deg, #a8edea, #fed6e3)',
+  'linear-gradient(135deg, #ff9a9e, #fecfef)',
+];
+
+const imageEmojis = ['🌅', '🌌', '🏔️', '🌊', '🌸', '🎨', '✨', '🔥', '💫', '🌈'];
+
 interface StoreState {
   user: User;
   posts: Post[];
@@ -202,20 +308,55 @@ interface StoreState {
   currentChatId: string | null;
   unreadChats: number;
   storyColors: string[];
+
+  // AI
+  aiModels: AIModel[];
+  aiConversations: AIConversation[];
+  currentConversationId: string | null;
+  isStreaming: boolean;
+  generatedImages: GeneratedImage[];
+  usageRpm: number;
+  usageTpm: number;
+  usageRpd: number;
+  totalTokensUsed: number;
+  totalEstimatedCost: number;
+  playgroundMode: 'chat' | 'compare' | 'media' | 'live' | 'url';
+  compareModelA: string;
+  compareModelB: string;
+
+  // Feed
   addPost: (content: string, image?: string) => void;
   toggleLike: (postId: string) => void;
   addComment: (postId: string, content: string) => void;
+
+  // Stories
   addStory: (content: string, bgColor: string) => void;
   markStoryViewed: (storyId: string) => void;
+
+  // Chat
   sendMessage: (chatId: string, content: string) => void;
   openChat: (chatId: string) => void;
   markChatRead: (chatId: string) => void;
+
+  // Music
   playTrack: (track: Track) => void;
   togglePlay: () => void;
   nextTrack: () => void;
   prevTrack: () => void;
   setCurrentTime: (time: number) => void;
+
+  // Profile
   updateProfile: (data: Partial<User>) => void;
+
+  // AI Playground
+  setPlaygroundMode: (mode: 'chat' | 'compare' | 'media' | 'live' | 'url') => void;
+  sendAIMessage: (prompt: string) => void;
+  setSystemInstruction: (instruction: string) => void;
+  createConversation: (model: string) => void;
+  setCompareModels: (a: string, b: string) => void;
+  generateImage: (prompt: string) => void;
+  getUrlSummary: (url: string) => void;
+  clearConversation: () => void;
 }
 
 export const useStore = create<StoreState>()(
@@ -232,6 +373,21 @@ export const useStore = create<StoreState>()(
       currentChatId: null,
       unreadChats: 3,
       storyColors,
+
+      // AI state
+      aiModels,
+      aiConversations: [],
+      currentConversationId: null,
+      isStreaming: false,
+      generatedImages: [],
+      usageRpm: 0,
+      usageTpm: 0,
+      usageRpd: 0,
+      totalTokensUsed: 0,
+      totalEstimatedCost: 0,
+      playgroundMode: 'chat',
+      compareModelA: 'gemini-2.5-pro',
+      compareModelB: 'gemini-2.5-flash',
 
       addPost: (content, image) => {
         const { user } = get();
@@ -283,7 +439,6 @@ export const useStore = create<StoreState>()(
             c.id === chatId ? { ...c, messages: [...c.messages, msg], lastMessage: content, lastMessageTime: msg.timestamp } : c
           ),
         }));
-
         setTimeout(() => {
           const reply = autoReplies[Math.floor(Math.random() * autoReplies.length)];
           const replyMsg: Message = {
@@ -298,10 +453,7 @@ export const useStore = create<StoreState>()(
         }, 1500 + Math.random() * 2000);
       },
 
-      openChat: (chatId) => {
-        set({ currentChatId: chatId });
-        get().markChatRead(chatId);
-      },
+      openChat: (chatId) => { set({ currentChatId: chatId }); get().markChatRead(chatId); },
 
       markChatRead: (chatId) => {
         set((s) => {
@@ -327,10 +479,126 @@ export const useStore = create<StoreState>()(
       },
       setCurrentTime: (time) => { set({ currentTime: time }); },
       updateProfile: (data) => { set((s) => ({ user: { ...s.user, ...data } })); },
+
+      // AI Playground actions
+      setPlaygroundMode: (mode) => set({ playgroundMode: mode }),
+
+      createConversation: (model) => {
+        const conv: AIConversation = {
+          id: `conv-${Date.now()}`,
+          title: 'New conversation',
+          model,
+          systemInstruction: '',
+          messages: [],
+          createdAt: Date.now(),
+        };
+        set((s) => ({ aiConversations: [conv, ...s.aiConversations], currentConversationId: conv.id }));
+      },
+
+      setSystemInstruction: (instruction) => {
+        const { currentConversationId, aiConversations } = get();
+        if (!currentConversationId) return;
+        set({
+          aiConversations: aiConversations.map((c) =>
+            c.id === currentConversationId ? { ...c, systemInstruction: instruction } : c
+          ),
+        });
+      },
+
+      sendAIMessage: (prompt) => {
+        const { currentConversationId, aiConversations, aiModels, totalTokensUsed, totalEstimatedCost } = get();
+        if (!currentConversationId) return;
+        const conv = aiConversations.find((c) => c.id === currentConversationId);
+        if (!conv) return;
+
+        const userMsg: AIMessage = { id: `ai-${Date.now()}`, role: 'user', content: prompt, timestamp: Date.now() };
+        const inputTokens = estimateTokens(prompt);
+
+        set((s) => ({
+          aiConversations: s.aiConversations.map((c) =>
+            c.id === currentConversationId ? { ...c, messages: [...c.messages, userMsg], title: c.messages.length === 0 ? prompt.slice(0, 40) : c.title } : c
+          ),
+          isStreaming: true,
+        }));
+
+        // Simulate streaming response
+        const fullResponse = generateAIResponse(prompt, conv.model, conv.systemInstruction);
+        const outputTokens = estimateTokens(fullResponse);
+        const latency = estimateLatency(conv.model, outputTokens);
+        const model = aiModels.find((m) => m.id === conv.model);
+        const cost = model ? (inputTokens / 1000000) * model.inputCost + (outputTokens / 1000000) * model.outputCost : 0;
+
+        setTimeout(() => {
+          const aiMsg: AIMessage = {
+            id: `ai-${Date.now() + 1}`, role: 'model', content: fullResponse,
+            model: conv.model, timestamp: Date.now(), tokens: inputTokens + outputTokens, latency,
+          };
+          set((s) => ({
+            isStreaming: false,
+            aiConversations: s.aiConversations.map((c) =>
+              c.id === currentConversationId ? { ...c, messages: [...c.messages, aiMsg] } : c
+            ),
+            usageRpm: Math.min(s.usageRpm + 1, model?.rpm || 1000),
+            usageTpm: Math.min(s.usageTpm + inputTokens + outputTokens, model?.tpm || 1000000),
+            usageRpd: Math.min(s.usageRpd + 1, model?.rpd || 1000),
+            totalTokensUsed: s.totalTokensUsed + inputTokens + outputTokens,
+            totalEstimatedCost: s.totalEstimatedCost + cost,
+          }));
+        }, latency);
+      },
+
+      setCompareModels: (a, b) => set({ compareModelA: a, compareModelB: b }),
+
+      generateImage: (prompt) => {
+        const img: GeneratedImage = {
+          id: `img-${Date.now()}`,
+          prompt,
+          model: 'nano-banana',
+          gradient: imageGradients[Math.floor(Math.random() * imageGradients.length)],
+          emoji: imageEmojis[Math.floor(Math.random() * imageEmojis.length)],
+          timestamp: Date.now(),
+        };
+        set((s) => ({ generatedImages: [img, ...s.generatedImages] }));
+      },
+
+      getUrlSummary: (url) => {
+        const summaryMsg: AIMessage = {
+          id: `ai-url-${Date.now()}`,
+          role: 'model',
+          content: `I've retrieved and analyzed the content from ${url}.\n\n**Summary:**\n• The page appears to be a web resource with relevant content\n• Key topics include the main subject matter and supporting details\n• The content is structured for readability\n\n**Key Takeaways:**\n1. The primary focus is on delivering value to the reader\n2. Supporting evidence and examples reinforce the main points\n3. The page includes calls to action and navigation elements\n\n*Note: In production, this would use the actual URL Context tool to fetch and analyze real page content.*`,
+          model: 'gemini-2.5-flash',
+          timestamp: Date.now(),
+          tokens: 150,
+          latency: 1200,
+        };
+        const { currentConversationId, aiConversations } = get();
+        if (!currentConversationId) return;
+        set((s) => ({
+          aiConversations: s.aiConversations.map((c) =>
+            c.id === currentConversationId ? { ...c, messages: [...c.messages, summaryMsg] } : c
+          ),
+          usageRpm: s.usageRpm + 1,
+          totalTokensUsed: s.totalTokensUsed + 150,
+        }));
+      },
+
+      clearConversation: () => {
+        const { currentConversationId } = get();
+        if (!currentConversationId) return;
+        set((s) => ({
+          aiConversations: s.aiConversations.map((c) =>
+            c.id === currentConversationId ? { ...c, messages: [] } : c
+          ),
+        }));
+      },
     }),
     {
       name: 'nexus-storage',
-      partialize: (s) => ({ user: s.user, posts: s.posts, stories: s.stories, chats: s.chats }),
+      partialize: (s) => ({
+        user: s.user, posts: s.posts, stories: s.stories, chats: s.chats,
+        generatedImages: s.generatedImages, aiConversations: s.aiConversations,
+        totalTokensUsed: s.totalTokensUsed, totalEstimatedCost: s.totalEstimatedCost,
+      }),
     }
   )
 );
