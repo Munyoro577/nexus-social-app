@@ -1,52 +1,124 @@
 'use client';
 
+import { useState } from 'react';
 import { useStore } from '@/store/useStore';
-import Link from 'next/link';
 import { haptic } from '@/lib/haptics';
-import { formatTimestamp } from '@/lib/utils';
 
 export default function StoriesPage() {
-  const stories = useStore((s) => s.stories);
-  const addStory = useStore((s) => s.addStory);
-  const storyColors = useStore((s) => s.storyColors);
-  const user = useStore((s) => s.user);
+  const { stories, addStory, markStoryViewed, storyColors } = useStore();
+  const [showCreate, setShowCreate] = useState(false);
+  const [content, setContent] = useState('');
+  const [selectedColor, setSelectedColor] = useState(0);
+  const [viewingStoryId, setViewingStoryId] = useState<string | null>(null);
+
+  const handleCreateStory = () => {
+    if (!content.trim()) return;
+    haptic('medium');
+    addStory(content, storyColors[selectedColor]);
+    setContent('');
+    setShowCreate(false);
+  };
+
+  const viewingStory = stories.find(s => s.id === viewingStoryId);
+
+  if (viewingStory) {
+    return (
+      <div
+        className="fixed inset-0 z-50 flex items-center justify-center cursor-pointer"
+        onClick={() => { markStoryViewed(viewingStory.id); setViewingStoryId(null); }}
+        style={{ background: viewingStory.bgColor }}
+      >
+        <div className="text-center text-white">
+          <p className="text-sm opacity-75 mb-2">{viewingStory.userName}</p>
+          <p className="text-3xl mb-4">{viewingStory.content}</p>
+          <p className="text-xs opacity-50">
+            {new Date(viewingStory.timestamp).toLocaleString()}
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen pb-20" style={{ background: 'var(--bg)' }}>
-      <div className="glass sticky top-0 z-30 border-b" style={{ borderColor: 'var(--border)' }}>
-        <div className="max-w-lg mx-auto px-4 py-3">
+      <div className="glass sticky top-0 z-30 border-b px-4 py-3" style={{ borderColor: 'var(--border)' }}>
+        <div className="max-w-lg mx-auto">
           <h1 className="text-xl font-bold gradient-text">Stories</h1>
         </div>
       </div>
+
       <div className="max-w-lg mx-auto px-4 py-4">
-        <div className="flex gap-3 overflow-x-auto scrollbar-hide pb-3">
-          <button
-            onClick={() => { haptic('success'); addStory('New story \u2728', storyColors[Math.floor(Math.random() * storyColors.length)]); }}
-            className="flex-shrink-0 flex flex-col items-center gap-1"
-          >
-            <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: 'var(--card)', border: '2px dashed var(--border)' }}>
-              <span className="text-2xl">+</span>
+        <button
+          onClick={() => { haptic('light'); setShowCreate(!showCreate); }}
+          className="w-full p-4 rounded-2xl mb-4 text-left"
+          style={{ background: 'var(--card)', border: '2px dashed var(--border)' }}
+        >
+          <div className="text-2xl mb-2">➕</div>
+          <p className="font-medium text-sm">Create Story</p>
+          <p className="text-xs" style={{ color: 'var(--muted)' }}>Share what's on your mind</p>
+        </button>
+
+        {showCreate && (
+          <div className="p-4 rounded-2xl mb-4" style={{ background: 'var(--card)', border: '1px solid var(--border)' }}>
+            <textarea
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              placeholder="What's happening?!"
+              rows={4}
+              className="w-full rounded-xl px-3 py-2 text-sm resize-none outline-none mb-3"
+              style={{ background: 'var(--surface)', color: 'var(--text)' }}
+            />
+            <div className="flex gap-2 mb-3">
+              {storyColors.map((color, i) => (
+                <button
+                  key={i}
+                  onClick={() => { haptic('selection'); setSelectedColor(i); }}
+                  className="w-8 h-8 rounded-full border-2 transition-transform"
+                  style={{
+                    background: color,
+                    borderColor: selectedColor === i ? '#fff' : 'transparent',
+                    transform: selectedColor === i ? 'scale(1.1)' : 'scale(1)',
+                  }}
+                />
+              ))}
             </div>
-            <span className="text-[10px]" style={{ color: 'var(--muted)' }}>Add</span>
-          </button>
-          {stories.map((s) => (
-            <Link key={s.id} href="/stories/view" onClick={() => haptic('light')} className="flex-shrink-0 flex flex-col items-center gap-1">
-              <div className="w-16 h-16 rounded-full p-0.5" style={{ background: s.viewed ? 'var(--border)' : 'var(--gradient)' }}>
-                <div className="w-full h-full rounded-full flex items-center justify-center text-2xl" style={{ background: 'var(--card)' }}>{s.userAvatar}</div>
-              </div>
-              <span className="text-[10px]" style={{ color: 'var(--muted)' }}>{s.userName}</span>
-            </Link>
-          ))}
-        </div>
-        <div className="mt-6 space-y-3">
-          {stories.map((s) => (
-            <div key={s.id} className="p-4 rounded-2xl flex items-center gap-3" style={{ background: 'var(--card)', border: '1px solid var(--border)' }}>
-              <div className="w-12 h-12 rounded-full flex items-center justify-center text-xl" style={{ background: s.bgColor }}>{s.userAvatar}</div>
-              <div className="flex-1">
-                <div className="text-sm font-medium">{s.userName}</div>
-                <div className="text-xs" style={{ color: 'var(--muted)' }}>{s.content} \u00b7 {formatTimestamp(s.timestamp)}</div>
-              </div>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setShowCreate(false)}
+                className="flex-1 px-3 py-2 rounded-lg text-sm font-medium"
+                style={{ background: 'var(--surface)', color: 'var(--text)' }}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleCreateStory}
+                disabled={!content.trim()}
+                className="flex-1 px-3 py-2 rounded-lg text-sm font-medium disabled:opacity-50"
+                style={{ background: 'var(--gradient)', color: '#fff' }}
+              >
+                Share
+              </button>
             </div>
+          </div>
+        )}
+
+        <div className="space-y-2">
+          {stories.map((story) => (
+            <button
+              key={story.id}
+              onClick={() => { haptic('selection'); setViewingStoryId(story.id); }}
+              className="w-full h-32 rounded-2xl overflow-hidden relative group cursor-pointer transition-transform"
+              style={{
+                background: story.bgColor,
+                opacity: story.viewed ? 0.6 : 1,
+              }}
+            >
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+                <p className="text-2xl mb-2">{story.content}</p>
+                <p className="text-xs opacity-75">{story.userName}</p>
+              </div>
+              <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity" />
+            </button>
           ))}
         </div>
       </div>
