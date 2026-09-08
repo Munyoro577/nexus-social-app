@@ -1,17 +1,1 @@
-{
-  "name": "nexus",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Nexus — Social + AI. Full-stack application.",
-  "main": "src/api/index.js",
-  "scripts": {
-    "dev": "wrangler dev",
-    "deploy": "wrangler deploy",
-    "db:migrate": "wrangler d1 execute nexus-db --file=src/db/schema.sql",
-    "db:migrate:local": "wrangler d1 execute nexus-db --local --file=src/db/schema.sql"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "wrangler": "^3.0.0"
-  }
-}
+{"name": "nexus", "version": "1.0.0", "private": true, "description": "Nexus — Social Super-App. Full-stack application.", "scripts": {"dev": "next dev", "build": "next build", "start": "next start", "lint": "next lint", "worker:dev": "wrangler dev", "worker:deploy": "wrangler deploy", "db:migrate": "wrangler d1 execute nexus-db --file=src/db/schema.sql", "db:migrate:local": "wrangler d1 execute nexus-db --local --file=src/db/schema.sql"}, "dependencies": {"next": "14.2.15", "react": "18.3.1", "react-dom": "18.3.1", "zustand": "4.5.5"}, "devDependencies": {"@types/node": "20.16.11", "@types/react": "18.3.11", "@types/react-dom": "18.3.0", "autoprefixer": "10.4.20", "postcss": "8.4.47", "tailwindcss": "3.4.13", "typescript": "5.6.2", "wrangler": "3.78.10"}}
