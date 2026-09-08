@@ -1,1 +1,23 @@
-PLACEHOLDER
+name = "nexus"
+compatibility_date = "2024-09-01"
+main = "src/api/index.js"
+
+[env.development]
+name = "nexus-dev"
+
+[env.production]
+name = "nexus"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "nexus-db"
+database_id = "placeholder-replace-with-real-id"
+
+[vars]
+ENVIRONMENT = "development"
+AI_PROVIDER = "mock"
+AUTH_PROVIDER = "mock"
+
+# Secrets (set via `wrangler secret put` — NEVER commit these):
+# JWT_SECRET
+# AI_API_KEY (if using real AI provider)

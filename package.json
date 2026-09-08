@@ -1,1 +1,17 @@
-PLACEHOLDER
+{
+  "name": "nexus",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Nexus — Social + AI. Full-stack application.",
+  "main": "src/api/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:migrate": "wrangler d1 execute nexus-db --file=src/db/schema.sql",
+    "db:migrate:local": "wrangler d1 execute nexus-db --local --file=src/db/schema.sql"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}
