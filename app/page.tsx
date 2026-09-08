@@ -1,27 +1,28 @@
 'use client';
 
-import { useStore } from '@/store/useStore';
+import { postService } from '@/lib/services';
 import CreatePost from '@/components/CreatePost';
 import PostCard from '@/components/PostCard';
-import { haptic } from '@/lib/haptics';
+import { useStore } from '@/store/useStore';
 
 export default function FeedPage() {
   const posts = useStore((s) => s.posts);
+  const user = useStore((s) => s.user);
 
   return (
-    <div className="min-h-screen pb-20" style={{ background: 'var(--bg)' }}>
-      <div className="glass sticky top-0 z-30 border-b" style={{ borderColor: 'var(--border)' }}>
-        <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between">
-          <h1 className="text-xl font-bold gradient-text">Nexus</h1>
-          <span className="text-2xl">{useStore((s) => s.user.avatar)}</span>
+    <div className="feed-page">
+      <div className="feed-header glass">
+        <div className="feed-header-inner">
+          <h1 className="feed-title gradient-text">Nexus</h1>
+          <span className="feed-avatar">{user.avatar}</span>
         </div>
       </div>
-      <div className="max-w-lg mx-auto px-4 py-4 space-y-4">
+      <div className="feed-content">
         <CreatePost />
         {posts.map((post) => (
           <PostCard key={post.id} post={post} />
         ))}
-        <div className="text-center py-8 text-sm" style={{ color: 'var(--muted)' }}>
+        <div className="feed-end">
           You're all caught up \u2728
         </div>
       </div>

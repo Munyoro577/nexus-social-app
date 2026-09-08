@@ -8,6 +8,7 @@ import { setHapticsEnabled } from '@/lib/haptics';
 import BottomNav from './BottomNav';
 import SyncIndicator from './SyncIndicator';
 import SecurityBadge from './SecurityBadge';
+import OnboardingShell from './OnboardingShell';
 
 const PUBLIC_ROUTES = ['/auth'];
 
@@ -15,6 +16,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const authUser = useStore((s) => s.authUser);
+  const onboardingStatus = useStore((s) => s.onboardingStatus);
   const hapticsEnabled = useStore((s) => s.hapticsEnabled);
   const [checked, setChecked] = useState(false);
 
@@ -33,34 +35,54 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!checked) return;
     const isPublic = PUBLIC_ROUTES.includes(pathname);
+
+    // Not authenticated → redirect to auth
     if (!authUser && !isPublic) {
       router.push('/auth');
+      return;
     }
+
+    // Authenticated but on auth page → redirect to /
     if (authUser && isPublic) {
       router.push('/');
+      return;
     }
-  }, [checked, authUser, pathname]);
+  }, [checked, authUser, pathname, onboardingStatus, router]);
 
+  // Loading state
   if (!checked) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--bg)' }}>
-        <div className="text-4xl animate-pulse">\u2728</div>
+      <div className="app-loading">
+        <div className="app-loading-icon">\u2728</div>
       </div>
     );
   }
 
   const isAuthPage = pathname === '/auth';
 
+  // ---- Shell 1: Auth (not authenticated) ----
+  if (!authUser || isAuthPage) {
+    return (
+      <div className="auth-shell">
+        {children}
+      </div>
+    );
+  }
+
+  // ---- Shell 2: Onboarding (authenticated, onboarding not completed) ----
+  if (onboardingStatus !== 'completed') {
+    return <OnboardingShell />;
+  }
+
+  // ---- Shell 3: Authenticated App (authenticated, onboarding completed) ----
   return (
-    <div className="min-h-screen" style={{ background: 'var(--bg)', color: 'var(--text)' }}>
-      {!isAuthPage && (
-        <div className="fixed top-0 right-0 z-40 px-3 py-2 flex items-center gap-3">
-          <SyncIndicator />
-          <SecurityBadge />
-        </div>
-      )}
-      <main>{children}</main>
-      {!isAuthPage && <BottomNav />}
+    <div className="app-shell-root">
+      <div className="app-shell-header">
+        <SyncIndicator />
+        <SecurityBadge />
+      </div>
+      <main className="app-shell-main">{children}</main>
+      <BottomNav />
     </div>
   );
 }

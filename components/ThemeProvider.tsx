@@ -10,7 +10,7 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
   const customPalette = useStore((s) => s.customPalette);
 
   useEffect(() => {
-    applyTheme(themeId, colorMode, customPalette);
+    applyTheme(themeId, colorMode, customPalette || undefined);
   }, [themeId, colorMode, customPalette]);
 
   return <>{children}</>;

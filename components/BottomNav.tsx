@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { haptic } from '@/lib/haptics';
 
 const NAV_ITEMS = [
-  { href: '/', label: 'Feed', icon: 'M3 12l9-9 9 9M5 10v10a1 1 0 001 1h12a1 1 0 001-1V10' },
+  { href: '/', label: 'Home', icon: 'M3 12l9-9 9 9M5 10v10a1 1 0 001 1h12a1 1 0 001-1V10' },
   { href: '/stories', label: 'Stories', icon: 'M12 2a10 10 0 100 20 10 10 0 000-20zM12 7a5 5 0 100 10 5 5 0 000-10z' },
   { href: '/chat', label: 'Chat', icon: 'M8 12h8M8 8h8m-8 8h5M21 12a9 9 0 11-18 0 9 9 0 0118 0z' },
   { href: '/music', label: 'Music', icon: 'M9 18V5l12-2v13M9 18a3 3 0 11-6 0 3 3 0 016 0zm12-2a3 3 0 11-6 0 3 3 0 016 0z' },
@@ -17,8 +17,8 @@ export default function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 glass border-t" style={{ borderColor: 'var(--border)' }}>
-      <div className="max-w-lg mx-auto flex items-center justify-around px-1 py-1.5">
+    <nav className="bottom-nav" role="navigation" aria-label="Main navigation">
+      <div className="bottom-nav-inner">
         {NAV_ITEMS.map(({ href, label, icon: path }) => {
           const active = href === '/' ? pathname === '/' : pathname.startsWith(href);
           return (
@@ -26,13 +26,13 @@ export default function BottomNav() {
               key={href}
               href={href}
               onClick={() => haptic('selection')}
-              className="flex flex-col items-center gap-0.5 px-2 py-1.5 rounded-lg transition-colors"
-              style={{ color: active ? 'var(--accent)' : 'var(--muted)' }}
+              className={`bottom-nav-item ${active ? 'active' : ''}`}
+              aria-current={active ? 'page' : undefined}
             >
-              <svg className="w-5 h-5" fill={active ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              <svg className="bottom-nav-icon" fill={active ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d={path} />
               </svg>
-              <span className="text-[10px] font-medium">{label}</span>
+              <span className="bottom-nav-label">{label}</span>
             </Link>
           );
         })}
