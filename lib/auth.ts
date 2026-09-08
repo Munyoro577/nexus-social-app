@@ -63,7 +63,7 @@ export function createSession(provider: AuthProvider, name: string, email: strin
     name,
     avatar,
     provider,
-    verified: provider !== 'guest',
+    verified: provider !== 'email',
     token: btoa(`${provider}-${Date.now()}-${Math.random().toString(36).slice(2)}`),
     expiresAt: Date.now() + 30 * 24 * 60 * 60 * 1000, // 30 days
   };
@@ -95,7 +95,7 @@ export async function registerBiometric(): Promise<boolean> {
         authenticatorSelection: { userVerification: 'required', authenticatorAttachment: 'platform' },
         timeout: 60000,
       },
-    } as PublicKeyCredentialCreationOptions);
+    } as unknown as CredentialCreationOptions);
     return !!credential;
   } catch {
     return false;
@@ -112,7 +112,7 @@ export async function verifyBiometric(): Promise<boolean> {
         timeout: 60000,
         userVerification: 'required',
       },
-    } as PublicKeyCredentialRequestOptions);
+    } as unknown as CredentialRequestOptions);
     return !!assertion;
   } catch {
     return false;
