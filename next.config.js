@@ -4,8 +4,6 @@ const nextConfig = {
   output: 'export',
   images: { unoptimized: true },
   trailingSlash: true,
-  basePath: '/nexus-social-app',
-  assetPrefix: '/nexus-social-app/',
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },
 };
